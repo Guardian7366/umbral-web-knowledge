@@ -1,0 +1,73 @@
+==============================================================================
+UMBRAL WEB - Automated document classification
+Model: Logistic Regression | Vectorizer: TF-IDF (unigrams + bigrams)
+==============================================================================
+
+[Step 1] Loaded 9 documents from data/catalog.json
+  UW01  training  design_references   data/documents/uw01.txt
+  UW02  training  design_references   data/documents/uw02.txt
+  UW03  test      design_references   data/documents/uw03.txt
+  UW04  training  creative_methods    data/documents/uw04.txt
+  UW05  training  creative_methods    data/documents/uw05.txt
+  UW06  test      creative_methods    data/documents/uw06.txt
+  UW07  training  project_lessons     data/documents/uw07.txt
+  UW08  training  project_lessons     data/documents/uw08.txt
+  UW09  test      project_lessons     data/documents/uw09.txt
+
+[Step 2] Header removed (code, type, department, title); body text kept.
+  Example (UW01): "A content-heavy page needs a recognizable reading order. The visual proposal must distinguish the main message..."
+
+[Step 3] Training: UW01, UW02, UW04, UW05, UW07, UW08
+         Test:     UW03, UW06, UW09
+
+[Step 4] TF-IDF vocabulary fitted on training set: 742 terms
+[Step 5] Model trained on 6 documents, classes: ['creative_methods', 'design_references', 'project_lessons']
+  Most characteristic terms per category:
+    creative_methods   idea, session, sketches, task, complete, discarded, problem, person
+    design_references  composition, order, reading, proposed reference, explore, useful, easy, proposed
+    project_lessons    review, materials, course, adjusted, cards, portfolio, transitions, review feedback
+
+[Step 6] Classification of the test documents
+------------------------------------------------------------------------------
+ID    Title                                        Actual             Predicted          Prob.  OK
+------------------------------------------------------------------------------
+UW03  Modular Composition for a Flexible Identity  design_references  design_references   0.42  yes
+UW06  Concept Review Before Choosing a Direction   creative_methods   creative_methods    0.44  yes
+UW09  Project Closeout for the Mesa Abierta Digit  project_lessons    project_lessons     0.47  yes
+------------------------------------------------------------------------------
+Accuracy on test set: 1.00 (3/3)
+
+Per-category report:
+                   precision    recall  f1-score   support
+
+design_references       1.00      1.00      1.00         1
+ creative_methods       1.00      1.00      1.00         1
+  project_lessons       1.00      1.00      1.00         1
+
+         accuracy                           1.00         3
+        macro avg       1.00      1.00      1.00         3
+     weighted avg       1.00      1.00      1.00         3
+
+Confusion matrix (rows = actual, columns = predicted):
+                      design_referen  creative_metho  project_lesson
+design_references                  1               0               0
+creative_methods                   0               1               0
+project_lessons                    0               0               1
+
+[Extra] Leave-one-out check over all 9 documents: 5/9 correct
+  UW01: actual design_references, predicted project_lessons
+  UW02: actual design_references, predicted project_lessons
+  UW05: actual creative_methods, predicted project_lessons
+  UW08: actual project_lessons, predicted design_references
+
+Note: with 9 documents this is a demonstration, not a measure of how the
+model will perform on new documents of any kind.
+
+[Step 7] Classification of new texts
+------------------------------------------------------------------------------
+  Text 1: "During the session each designer sketched three alternatives and th..."
+    -> creative_methods   (creative_methods=0.49, design_references=0.24, project_lessons=0.27)
+  Text 2: "At project closeout we found the first proposal reused the usual te..."
+    -> project_lessons   (creative_methods=0.25, design_references=0.25, project_lessons=0.51)
+  Text 3: "A strong contrast between the main heading and secondary blocks gui..."
+    -> design_references   (creative_methods=0.27, design_references=0.48, project_lessons=0.25)

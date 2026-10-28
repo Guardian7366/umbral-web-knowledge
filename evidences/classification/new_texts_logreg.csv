@@ -1,0 +1,4 @@
+text,predicted_category,prob_creative_methods,prob_design_references,prob_project_lessons
+During the session each designer sketched three alternatives and the team chose two directions to prototype.,creative_methods,0.4859,0.2418,0.2724
+At project closeout we found the first proposal reused the usual template; the lesson was to review the content first.,project_lessons,0.2466,0.2479,0.5055
+A strong contrast between the main heading and secondary blocks guides the reading order of the page.,design_references,0.2702,0.484,0.2458

@@ -1,0 +1,4 @@
+id,title,actual_category,predicted_category,prob_creative_methods,prob_design_references,prob_project_lessons,correct
+UW03,Modular Composition for a Flexible Identity,design_references,design_references,0.2367,0.575,0.1883,True
+UW06,Concept Review Before Choosing a Direction,creative_methods,creative_methods,0.6349,0.1635,0.2016,True
+UW09,Project Closeout for the Mesa Abierta Digital Menu,project_lessons,project_lessons,0.1195,0.1905,0.69,True
