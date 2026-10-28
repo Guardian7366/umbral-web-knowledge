@@ -47,5 +47,3 @@ Son consultas para ejecutar, no resultados ya obtenidos. La colección permite u
 - Integrante 1: reunir los archivos finales y comprobar el acceso al repositorio.
 
 El código y las evidencias de ejecución se incorporarán con las aportaciones del equipo. Las carpetas `src/` y `evidencias/` se crearán cuando tengan contenido. No cambien los nombres o categorías sin avisar a quienes programan.
-
-Ayuda oficial: [crear un repositorio](https://docs.github.com/es/repositories/creating-and-managing-repositories/quickstart-for-repositories) y [cargar archivos](https://docs.github.com/es/repositories/working-with-files/managing-files/adding-a-file-to-a-repository).
