@@ -4,7 +4,6 @@ Prototipo académico de gestión del conocimiento para una empresa ficticia de s
 
 ## Contenido actual
 
-- `docs/Umbral Web empresa y guia.docx`: descripción de la empresa y pasos para subir el proyecto a GitHub.
 - `datos/documentos/`: nueve textos internos ficticios en UTF-8.
 - `datos/catalogo.json`: ruta, título, categoría y uso sugerido de cada texto. Las rutas parten de la carpeta principal del proyecto.
 
