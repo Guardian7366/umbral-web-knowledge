@@ -1,0 +1,11 @@
+UMBRAL WEB
+Project Closeout for the Mesa Abierta Digital Menu
+Code: UW09 | Version: 1.0 | Date: October 27, 2026
+Type: Closeout report
+Responsible department: Project Management
+
+The Mesa Abierta project involved designing a digital menu for a restaurant. The first proposal used large photographs and dish names that were not prominent enough. During the review on a phone, difficulties were found in comparing prices and identifying the menu sections.
+
+The adjusted version gave priority to the name, brief description, and price of each dish. The photographs were retained as supporting elements, and navigation between sections was simplified. The feedback received indicated that the information appeared more organized; no quantitative evaluation was conducted.
+
+The lesson was to check the proposal on the device on which it would be used before approving its appearance. The team saved screenshots of the changes and the observations as project reference materials. For similar work, this closeout report should be retrieved and used to discuss whether the new composition makes it easier to compare options without relying on an image to explain each item.

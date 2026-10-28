@@ -1,0 +1,65 @@
+[
+  {
+    "id": "UW01",
+    "file": "datos/documentos/uw01.txt",
+    "title": "Visual Hierarchy for Content-Heavy Pages",
+    "category": "design_references",
+    "suggested_use": "training"
+  },
+  {
+    "id": "UW02",
+    "file": "datos/documentos/uw02.txt",
+    "title": "Motion and Visual Feedback in an Interface",
+    "category": "design_references",
+    "suggested_use": "training"
+  },
+  {
+    "id": "UW03",
+    "file": "datos/documentos/uw03.txt",
+    "title": "Modular Composition for a Flexible Identity",
+    "category": "design_references",
+    "suggested_use": "test"
+  },
+  {
+    "id": "UW04",
+    "file": "datos/documentos/uw04.txt",
+    "title": "Brief Idea Generation Session",
+    "category": "creative_methods",
+    "suggested_use": "training"
+  },
+  {
+    "id": "UW05",
+    "file": "datos/documentos/uw05.txt",
+    "title": "Short Test of a Visual Proposal",
+    "category": "creative_methods",
+    "suggested_use": "training"
+  },
+  {
+    "id": "UW06",
+    "file": "datos/documentos/uw06.txt",
+    "title": "Concept Review Before Choosing a Direction",
+    "category": "creative_methods",
+    "suggested_use": "test"
+  },
+  {
+    "id": "UW07",
+    "file": "datos/documentos/uw07.txt",
+    "title": "Project Closeout for the Aula Clara Course Catalog",
+    "category": "project_lessons",
+    "suggested_use": "training"
+  },
+  {
+    "id": "UW08",
+    "file": "datos/documentos/uw08.txt",
+    "title": "Project Closeout for the Estudio Norte Portfolio",
+    "category": "project_lessons",
+    "suggested_use": "training"
+  },
+  {
+    "id": "UW09",
+    "file": "datos/documentos/uw09.txt",
+    "title": "Project Closeout for the Mesa Abierta Digital Menu",
+    "category": "project_lessons",
+    "suggested_use": "test"
+  }
+]

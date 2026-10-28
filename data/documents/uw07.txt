@@ -1,0 +1,11 @@
+UMBRAL WEB
+Project Closeout for the Aula Clara Course Catalog
+Code: UW07 | Version: 1.0 | Date: October 27, 2026
+Type: Closeout report
+Responsible department: Project Management
+
+The Aula Clara project involved designing the interface for a course catalog. The first proposal reused the company’s usual layout: a large image at the top and a list of identical cards. The internal review revealed that it was difficult to distinguish course levels and delivery modes.
+
+The team adjusted the cards to show the information needed to compare courses first and separated the content according to users’ information needs. During the prototype review, participants were able to explain the differences between the options more clearly. The observation was recorded qualitatively, without a formal measurement of completion times.
+
+The lesson from the closeout was to review the content before choosing a template. It was agreed that the first proposal and the adjusted version would be kept as reference materials. For future catalogs, these materials can help the team discuss which information should stand out and which decisions should be tested before development.

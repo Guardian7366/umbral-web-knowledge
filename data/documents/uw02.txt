@@ -1,0 +1,11 @@
+UMBRAL WEB
+Motion and Visual Feedback in an Interface
+Code: UW02 | Version: 1.0 | Date: October 27, 2026
+Type: Design note
+Responsible department: Design and User Experience
+
+Motion can help people understand what is happening in an interface. A brief transition between states, a confirmation when a form is submitted, or a response when a card is selected makes it possible to recognize that the action has been received.
+
+The proposed reference uses subtle animations tied to a specific function. Constant motion around text, effects that delay navigation, and abrupt changes that distract from the content should be avoided. The design must also provide a reduced-motion version.
+
+To explore this visual direction, it is useful to examine three moments: entering a section, receiving feedback from a button, and a component changing state. Motion will be retained when it clarifies the interaction. If it only adds decoration or makes reading difficult, it must be simplified. This reference can guide prototypes that aim for an expressive and easy-to-use experience.

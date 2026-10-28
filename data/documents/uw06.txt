@@ -1,0 +1,11 @@
+UMBRAL WEB
+Concept Review Before Choosing a Direction
+Code: UW06 | Version: 1.0 | Date: October 27, 2026
+Type: Work procedure
+Responsible department: Creative Direction
+
+The concept review takes place when there are at least two visual directions for the same problem. Each direction must be presented with the same content and a similar level of detail so that the comparison is useful.
+
+The moderator asks the team to assess three aspects: clarity for the user, alignment with the project identity, and how the proposal differs from the solutions the company tends to repeat. Each comment must identify a specific element of the proposal and explain its effect.
+
+Before voting, time is allowed to adjust or combine the directions. The group chooses a direction and documents the reasons, the questions that remain open, and the next testing step. If an idea is discarded, the reason is recorded. This procedure prevents the choice from depending solely on the preferences of the person with the most authority.

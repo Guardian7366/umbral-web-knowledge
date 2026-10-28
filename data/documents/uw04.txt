@@ -1,0 +1,11 @@
+UMBRAL WEB
+Brief Idea Generation Session
+Code: UW04 | Version: 1.0 | Date: October 27, 2026
+Type: Work procedure
+Responsible department: Creative Direction
+
+The ideation session begins with a specific design problem. The person in charge must express it in one sentence and share the project constraints. The group then reviews two references to help open the discussion.
+
+During the first ten minutes, each participant independently sketches three alternatives. At this stage, proposals are not discarded because they seem difficult to develop. Each person then explains the intention behind their sketches, and the rest of the team identifies ideas that could be combined or explored.
+
+The session ends by choosing two directions for a quick prototype. The choice must consider their relationship to the problem, how they differ from previous work, and whether they can be tested. The coordinator records the chosen directions and also keeps the discarded sketches. This record makes it possible to revisit an idea without repeating the entire session.

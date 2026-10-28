@@ -1,49 +1,49 @@
 # Umbral Web
 
-Prototipo académico de gestión del conocimiento para una empresa ficticia de software especializada en diseño web. Busca recuperar referencias, métodos creativos y aprendizajes que ayuden al equipo a salir de soluciones repetidas.
+An academic knowledge management prototype for a fictional software company specializing in web design. It aims to retrieve references, creative methods, and lessons learned that help the team move beyond repeated solutions.
 
-## Contenido actual
+## Current contents
 
-- `datos/documentos/`: nueve textos internos ficticios en UTF-8.
-- `datos/catalogo.json`: ruta, título, categoría y uso sugerido de cada texto. Las rutas parten de la carpeta principal del proyecto.
+- `datos/documentos/`: nine fictional internal texts in UTF-8.
+- `datos/catalogo.json`: the path, title, category, and suggested use of each text. Paths are relative to the project's root folder.
 
-La empresa, los proyectos y las observaciones de los documentos son ficticios. Los textos tienen formato de documentación interna y se prepararon como material de prueba.
+The company, projects, and observations in the documents are fictional. The texts are formatted as internal documentation and were prepared as test material.
 
-## Categorías
+## Categories
 
-- `referencias_diseno`: ideas y criterios para orientar una propuesta visual.
-- `metodos_creativos`: procedimientos para generar, probar o revisar conceptos.
-- `aprendizajes_proyectos`: antecedentes y conclusiones de trabajos anteriores.
+- `design_references`: ideas and criteria to guide a visual proposal.
+- `creative_methods`: procedures for generating, testing, or reviewing concepts.
+- `project_lessons`: reference materials and conclusions from previous work.
 
-| Código | Documento | Categoría |
+| Code | Document | Category |
 | --- | --- | --- |
-| UW01 | Jerarquía visual para páginas con mucho contenido | referencias_diseno |
-| UW02 | Movimiento y respuesta visual en una interfaz | referencias_diseno |
-| UW03 | Composición modular para una identidad flexible | referencias_diseno |
-| UW04 | Sesión breve de generación de ideas | metodos_creativos |
-| UW05 | Prueba corta de una propuesta visual | metodos_creativos |
-| UW06 | Revisión de conceptos antes de elegir una dirección | metodos_creativos |
-| UW07 | Cierre del proyecto de catálogo de cursos Aula Clara | aprendizajes_proyectos |
-| UW08 | Cierre del proyecto de portafolio Estudio Norte | aprendizajes_proyectos |
-| UW09 | Cierre del proyecto de menú digital Mesa Abierta | aprendizajes_proyectos |
+| UW01 | Visual Hierarchy for Content-Heavy Pages | design_references |
+| UW02 | Motion and Visual Feedback in an Interface | design_references |
+| UW03 | Modular Composition for a Flexible Identity | design_references |
+| UW04 | Brief Idea Generation Session | creative_methods |
+| UW05 | Short Test of a Visual Proposal | creative_methods |
+| UW06 | Concept Review Before Choosing a Direction | creative_methods |
+| UW07 | Project Closeout for the Aula Clara Course Catalog | project_lessons |
+| UW08 | Project Closeout for the Estudio Norte Portfolio | project_lessons |
+| UW09 | Project Closeout for the Mesa Abierta Digital Menu | project_lessons |
 
-## Uso por el equipo
+## Team use
 
-Los integrantes 3 y 4 deben leer los archivos `.txt`; el catálogo contiene las etiquetas para entrenar y comprobar la clasificación. No se debe incluir la categoría ni el campo `uso_sugerido` como parte del texto que se clasifica.
+Team members 3 and 4 must read the `.txt` files; the catalog contains the labels for training and checking the classification. The category and the `suggested_use` field must not be included as part of the text being classified.
 
-Para la clasificación se sugieren seis documentos de entrenamiento (dos por categoría) y tres de prueba (uno por categoría), identificados en el catálogo. Ajusten TF-IDF y entrenen el modelo solo con los de entrenamiento; después clasifiquen los de prueba. En la búsqueda pueden consultar los nueve textos.
+For classification, six training documents (two per category) and three test documents (one per category) are suggested and identified in the catalog. Fit TF-IDF and train the model using only the training documents; then classify the test documents. All nine texts can be queried in the search component.
 
-Consultas iniciales sugeridas:
-- ¿Cómo organizar una sesión para generar ideas de diseño?
-- ¿Qué debemos revisar para que las animaciones no dificulten la navegación?
+Suggested initial queries:
+- How can we organize a session to generate design ideas?
+- What should we review to prevent animations from making navigation difficult?
 
-Son consultas para ejecutar, no resultados ya obtenidos. La colección permite una demostración inicial; su tamaño no permite concluir que el clasificador funcionará igual con documentos nuevos de cualquier tipo.
+These are queries to run, not results already obtained. The collection supports an initial demonstration; its size does not allow conclusions that the classifier will perform the same way on new documents of any kind.
 
-## Aportaciones pendientes
+## Pending contributions
 
-- Integrante 2: mapa del ciclo del conocimiento y ontología o grafo conceptual, dentro de `docs/`.
-- Integrantes 3 y 4: código de clasificación y búsqueda, dentro de `src/`, con dependencias y pasos de ejecución.
-- Integrante 5: evidencias dentro de `evidencias/` e informe final en PDF dentro de `docs/`.
-- Integrante 1: reunir los archivos finales y comprobar el acceso al repositorio.
+- Team member 2: knowledge lifecycle map and ontology or conceptual graph, in `docs/`.
+- Team members 3 and 4: classification and search code, in `src/`, with dependencies and execution steps.
+- Team member 5: evidence in `evidencias/` and the final PDF report in `docs/`.
+- Team member 1: collect the final files and check access to the repository.
 
-El código y las evidencias de ejecución se incorporarán con las aportaciones del equipo. Las carpetas `src/` y `evidencias/` se crearán cuando tengan contenido. No cambien los nombres o categorías sin avisar a quienes programan.
+The code and execution evidence will be incorporated through the team's contributions. The `src/` and `evidencias/` folders will be created when they have content. Do not change names or categories without notifying the team members working on the code.

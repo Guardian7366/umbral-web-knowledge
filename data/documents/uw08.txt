@@ -1,0 +1,11 @@
+UMBRAL WEB
+Project Closeout for the Estudio Norte Portfolio
+Code: UW08 | Version: 1.0 | Date: October 27, 2026
+Type: Closeout report
+Responsible department: Project Management
+
+The Estudio Norte project was a web portfolio for showcasing design work. The initial direction used lengthy transitions and automatic motion to give prominence to the images. When reviewing the prototype, the team found that some effects delayed access to the projects.
+
+The transitions were shortened, and a direct way to open each case study was added. Animations were reserved for state changes and specific moments in navigation. In a later review, the feedback highlighted that it was easier to browse the portfolio without losing its visual character.
+
+The lesson from the closeout was that an eye-catching presentation needs a clear navigation path. The review feedback, screenshots of both versions, and motion adjustments were archived. These reference materials must be consulted whenever a new proposal uses animation as a central part of its identity. No metrics were obtained that would support a claim of improved performance.

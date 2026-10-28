@@ -1,0 +1,11 @@
+UMBRAL WEB
+Short Test of a Visual Proposal
+Code: UW05 | Version: 1.0 | Date: October 27, 2026
+Type: Work procedure
+Responsible department: Creative Direction
+
+Before developing a complete proposal, the team must turn its main idea into a small test. The first task is to write down what needs to be checked. For example: whether a different layout makes information about a service easier to find.
+
+A single-screen prototype is prepared with the content needed to complete the task. It is then shown to people who were not involved in the design; they are given a specific action to carry out, and their behavior is recorded. The observation must focus on whether they understand the proposal, not just whether they like its appearance.
+
+At the end, the team compares the observations with the initial question and decides whether to continue, adjust, or discard the direction. The record must include the idea tested, an image of the prototype, the feedback received, and the decision. This procedure aims to reduce the work invested in a direction that has not yet been tested.

@@ -1,0 +1,11 @@
+UMBRAL WEB
+Visual Hierarchy for Content-Heavy Pages
+Code: UW01 | Version: 1.0 | Date: October 27, 2026
+Type: Design note
+Responsible department: Design and User Experience
+
+A content-heavy page needs a recognizable reading order. The visual proposal must distinguish the main message, the supporting information, and the action expected of the visitor. If all elements have the same size or contrast, the composition loses its direction.
+
+An editorial composition is proposed as a reference for future interfaces: a dominant heading, short blocks of information, and open space between sections. Typography can add personality without requiring changes to the entire structure. Images should support the content, not displace the information the user needs.
+
+This reference is useful for service pages and catalogs. Before adopting it, the team must review the composition on a small screen and check that the visual order remains clear. The intention is to explore a distinctive identity while keeping the content easy to read.

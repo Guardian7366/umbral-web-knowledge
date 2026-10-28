@@ -1,0 +1,11 @@
+UMBRAL WEB
+Modular Composition for a Flexible Identity
+Code: UW03 | Version: 1.0 | Date: October 27, 2026
+Type: Design note
+Responsible department: Design and User Experience
+
+A visual identity can be maintained even when its pages do not repeat exactly the same layout. This reference proposes working with a modular grid and a limited set of resources: typography, color, images, and spacing rules.
+
+Modules can be combined to build a homepage, a service page, or a project showcase. Variety comes from the proportions and sequence of the blocks. A large module can highlight an idea; several small modules can make it possible to compare information.
+
+The team must maintain common rules so that the interface remains recognizable. Flexibility must not lead to arbitrary changes between sections. When studying this reference, attention should be paid to the balance of the composition, the continuity of the identity, and the adaptation of modules to different screen sizes. It can provide a basis for refreshing proposals that currently depend on a single template.
