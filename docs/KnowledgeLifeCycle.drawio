@@ -1,0 +1,125 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Página-1" id="fRBIq8mbTUwdE-FQgEzI">
+    <mxGraphModel dx="1389" dy="835" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="87.5" width="460" x="260" y="246.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-29" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="87.5" width="460" x="260" y="366.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="87.5" width="460" x="260" y="490.75" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-37" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="87.5" width="460" x="260" y="616.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-41" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="87.5" width="460" x="260" y="746.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="87.5" width="460" x="260" y="126.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-45" edge="1" parent="1" source="S3OdPrIc1RwuL_4npvVs-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=6;strokeWidth=3;endArrow=block;endFill=1;fillColor=#1ba1e2;strokeColor=#006EAF;" target="S3OdPrIc1RwuL_4npvVs-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;fontSize=16;fontStyle=1;fontFamily=Verdana;" value="Creation or Aquisition" vertex="1">
+          <mxGeometry height="100" width="160" x="120" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-46" edge="1" parent="1" source="S3OdPrIc1RwuL_4npvVs-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startSize=6;strokeWidth=3;endArrow=block;endFill=1;fillColor=#1ba1e2;strokeColor=#006EAF;" target="S3OdPrIc1RwuL_4npvVs-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=16;fontStyle=1;fontFamily=Verdana;" value="Storage or Documentation" vertex="1">
+          <mxGeometry height="100" width="160" x="120" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-47" edge="1" parent="1" source="S3OdPrIc1RwuL_4npvVs-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=6;strokeWidth=3;endArrow=block;endFill=1;fillColor=#1ba1e2;strokeColor=#006EAF;" target="S3OdPrIc1RwuL_4npvVs-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;fontSize=16;fontStyle=1;fontFamily=Verdana;" value="Organization or Classification" vertex="1">
+          <mxGeometry height="100" width="160" x="120" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-48" edge="1" parent="1" source="S3OdPrIc1RwuL_4npvVs-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startSize=6;strokeWidth=3;endArrow=block;endFill=1;fillColor=#1ba1e2;strokeColor=#006EAF;" target="S3OdPrIc1RwuL_4npvVs-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=16;fontStyle=1;fontFamily=Verdana;" value="Knowledge Sharing" vertex="1">
+          <mxGeometry height="100" width="160" x="120" y="484.5" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-49" edge="1" parent="1" source="S3OdPrIc1RwuL_4npvVs-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=6;strokeWidth=3;endArrow=block;endFill=1;fillColor=#1ba1e2;strokeColor=#006EAF;" target="S3OdPrIc1RwuL_4npvVs-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;fontSize=16;fontStyle=1;fontFamily=Verdana;" value="Knowledge Application" vertex="1">
+          <mxGeometry height="100" width="160" x="120" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-50" edge="1" parent="1" source="S3OdPrIc1RwuL_4npvVs-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=6;strokeWidth=3;endArrow=block;endFill=1;fillColor=#1ba1e2;strokeColor=#006EAF;" target="S3OdPrIc1RwuL_4npvVs-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="860" />
+              <mxPoint x="100" y="860" />
+              <mxPoint x="100" y="100" />
+              <mxPoint x="200" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=16;fontStyle=1;fontFamily=Verdana;" value="Updating or Continuous Improvement" vertex="1">
+          <mxGeometry height="100" width="160" x="120" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Gather design references, develop visual concepts, build prototypes and capture observations from previous projects." vertex="1">
+          <mxGeometry height="65" width="170" x="300" y="137.5" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-21" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="" vertex="1">
+          <mxGeometry height="47.5" width="40" x="500" y="146.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-24" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;align=left;" value="&lt;ul&gt;&lt;li&gt;Design and UX&lt;/li&gt;&lt;li&gt;Creative Direction&lt;/li&gt;&lt;li&gt;Interface Development&lt;/li&gt;&lt;li&gt;Project Management&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="520" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Record references, methods, design decisions, prototype observations, and adjustments inside a common knowledge repository." vertex="1">
+          <mxGeometry height="65" width="170" x="300" y="257.5" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-27" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" value="" vertex="1">
+          <mxGeometry height="47.5" width="40" x="500" y="266.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-28" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;align=left;" value="&lt;ul&gt;&lt;li&gt;Design and UX&lt;/li&gt;&lt;li&gt;Creative Direction&lt;/li&gt;&lt;li&gt;Interface Development&lt;/li&gt;&lt;li&gt;Project Management&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="520" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-30" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Documents are categorized by knowledge type, associated with relevant design concepts, and described with metadata for easier recovery." vertex="1">
+          <mxGeometry height="65" width="170" x="300" y="377.5" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-31" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="" vertex="1">
+          <mxGeometry height="47.5" width="40" x="500" y="386.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-32" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;align=left;" value="&lt;ul&gt;&lt;li&gt;Creative Direction&lt;/li&gt;&lt;li&gt;Project Management&lt;/li&gt;&lt;li&gt;Document Owners&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="520" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-34" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Team members retrieve relevant documents for project kickoffs, creative sessions, reviews, and implementation." vertex="1">
+          <mxGeometry height="65" width="170" x="300" y="502" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-35" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" value="" vertex="1">
+          <mxGeometry height="47.5" width="40" x="500" y="510.75" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-36" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;align=left;" value="&lt;ul&gt;&lt;li&gt;Design and UX&lt;/li&gt;&lt;li&gt;Creative Direction&lt;/li&gt;&lt;li&gt;Interface Development&lt;/li&gt;&lt;li&gt;Project Management&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="520" y="494.5" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-38" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Employees use the information to develop new visual concepts, evaluate proposals, choose a design direction, and implement components." vertex="1">
+          <mxGeometry height="65" width="170" x="300" y="627.5" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-39" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="" vertex="1">
+          <mxGeometry height="47.5" width="40" x="500" y="636.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-40" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;align=left;" value="&lt;ul&gt;&lt;li&gt;Design and UX&lt;/li&gt;&lt;li&gt;Creative Direction&lt;/li&gt;&lt;li&gt;Interface Development&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="520" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-42" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Feedback, observations, project constraints, and project closure experiences are used to update or create knowledge records (documents)." vertex="1">
+          <mxGeometry height="65" width="170" x="300" y="757.5" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-43" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" value="" vertex="1">
+          <mxGeometry height="47.5" width="40" x="500" y="766.25" as="geometry" />
+        </mxCell>
+        <mxCell id="S3OdPrIc1RwuL_4npvVs-44" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;align=left;" value="&lt;ul&gt;&lt;li&gt;Design and UX&lt;/li&gt;&lt;li&gt;Creative Direction&lt;/li&gt;&lt;li&gt;Interface Development&lt;/li&gt;&lt;li&gt;Project Management&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="520" y="750" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
