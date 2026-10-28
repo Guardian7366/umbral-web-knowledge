@@ -1,0 +1,11 @@
+UMBRAL WEB
+Composición modular para una identidad flexible
+Código: UW03 | Versión: 1.0 | Fecha: 27 de octubre de 2026
+Tipo: Nota de diseño
+Área responsable: Diseño y experiencia de usuario
+
+Una identidad visual puede mantenerse aunque sus páginas no repitan exactamente la misma distribución. Esta referencia propone trabajar con una retícula modular y un conjunto limitado de recursos: tipografía, color, imágenes y reglas de separación.
+
+Los módulos pueden combinarse para construir una portada, una página de servicio o una presentación de proyectos. La variedad surge de la proporción y la secuencia de los bloques. Un módulo amplio puede destacar una idea; varios módulos pequeños pueden permitir comparar información.
+
+El equipo deberá conservar reglas comunes para que la interfaz siga siendo reconocible. La flexibilidad no debe producir cambios arbitrarios entre secciones. Al estudiar esta referencia, interesa revisar el equilibrio de la composición, la continuidad de la identidad y la adaptación de los módulos a distintos tamaños de pantalla. Puede ser una base para renovar propuestas que actualmente dependen de una sola plantilla.

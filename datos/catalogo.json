@@ -1,0 +1,65 @@
+[
+  {
+    "id": "UW01",
+    "archivo": "datos/documentos/uw01.txt",
+    "titulo": "Jerarquía visual para páginas con mucho contenido",
+    "categoria": "referencias_diseno",
+    "uso_sugerido": "entrenamiento"
+  },
+  {
+    "id": "UW02",
+    "archivo": "datos/documentos/uw02.txt",
+    "titulo": "Movimiento y respuesta visual en una interfaz",
+    "categoria": "referencias_diseno",
+    "uso_sugerido": "entrenamiento"
+  },
+  {
+    "id": "UW03",
+    "archivo": "datos/documentos/uw03.txt",
+    "titulo": "Composición modular para una identidad flexible",
+    "categoria": "referencias_diseno",
+    "uso_sugerido": "prueba"
+  },
+  {
+    "id": "UW04",
+    "archivo": "datos/documentos/uw04.txt",
+    "titulo": "Sesión breve de generación de ideas",
+    "categoria": "metodos_creativos",
+    "uso_sugerido": "entrenamiento"
+  },
+  {
+    "id": "UW05",
+    "archivo": "datos/documentos/uw05.txt",
+    "titulo": "Prueba corta de una propuesta visual",
+    "categoria": "metodos_creativos",
+    "uso_sugerido": "entrenamiento"
+  },
+  {
+    "id": "UW06",
+    "archivo": "datos/documentos/uw06.txt",
+    "titulo": "Revisión de conceptos antes de elegir una dirección",
+    "categoria": "metodos_creativos",
+    "uso_sugerido": "prueba"
+  },
+  {
+    "id": "UW07",
+    "archivo": "datos/documentos/uw07.txt",
+    "titulo": "Cierre del proyecto de catálogo de cursos Aula Clara",
+    "categoria": "aprendizajes_proyectos",
+    "uso_sugerido": "entrenamiento"
+  },
+  {
+    "id": "UW08",
+    "archivo": "datos/documentos/uw08.txt",
+    "titulo": "Cierre del proyecto de portafolio Estudio Norte",
+    "categoria": "aprendizajes_proyectos",
+    "uso_sugerido": "entrenamiento"
+  },
+  {
+    "id": "UW09",
+    "archivo": "datos/documentos/uw09.txt",
+    "titulo": "Cierre del proyecto de menú digital Mesa Abierta",
+    "categoria": "aprendizajes_proyectos",
+    "uso_sugerido": "prueba"
+  }
+]

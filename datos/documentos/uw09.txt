@@ -1,0 +1,11 @@
+UMBRAL WEB
+Cierre del proyecto de menú digital Mesa Abierta
+Código: UW09 | Versión: 1.0 | Fecha: 27 de octubre de 2026
+Tipo: Informe de cierre
+Área responsable: Gestión de proyectos
+
+El proyecto Mesa Abierta consistió en diseñar un menú digital para un restaurante. La primera propuesta utilizó fotografías grandes y nombres de platillos poco visibles. Durante la revisión en teléfono se encontraron dificultades para comparar precios y reconocer las secciones del menú.
+
+La versión ajustada dio prioridad al nombre, la descripción breve y el precio de cada platillo. Las fotografías se conservaron como apoyo y se simplificó la navegación entre secciones. Los comentarios recibidos señalaron que la información se percibía con mayor orden; no se realizó una evaluación cuantitativa.
+
+El aprendizaje fue comprobar la propuesta en el dispositivo de uso antes de aprobar su apariencia. El equipo guardó las capturas del cambio y las observaciones como antecedentes del proyecto. Para trabajos similares, conviene recuperar este cierre y discutir si la nueva composición facilita comparar opciones sin depender de una imagen para explicar cada elemento.
