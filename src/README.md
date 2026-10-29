@@ -49,3 +49,11 @@ With only nine short documents, these results demonstrate that the pipeline work
 - `predictions_<model>.csv`: test documents with actual category, predicted category and probabilities.
 - `new_texts_<model>.csv`: predictions for the texts passed with `--text` or `--file`.
 - `confusion_matrix_<model>.png`: confusion matrix for the test set.
+
+# Implementation of basic semantic search (Team member 4)
+
+`interactive.py` implements a basic semantic search using TF-IDF and cosine similarity. The user enters a query, and the script displays the top 3 most similar documents with the query terms highlighted.
+
+```sh
+python src/interactive.py
+```
