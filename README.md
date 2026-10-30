@@ -38,12 +38,3 @@ Suggested initial queries:
 - What should we review to prevent animations from making navigation difficult?
 
 These are queries to run, not results already obtained. The collection supports an initial demonstration; its size does not allow conclusions that the classifier will perform the same way on new documents of any kind.
-
-## Pending contributions
-
-- Team member 2: knowledge lifecycle map and ontology or conceptual graph, in `docs/`.
-- Team members 3 and 4: classification and search code, in `src/`, with dependencies and execution steps.
-- Team member 5: evidence in `evidencias/` and the final PDF report in `docs/`.
-- Team member 1: collect the final files and check access to the repository.
-
-The code and execution evidence will be incorporated through the team's contributions. The `src/` and `evidencias/` folders will be created when they have content. Do not change names or categories without notifying the team members working on the code.
