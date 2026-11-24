@@ -45,7 +45,7 @@ from sklearn.naive_bayes import MultinomialNB
 # ---------------------------------------------------------------------------
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CATALOG_PATH = REPO_ROOT / "data" / "catalog.json"
-EVIDENCE_DIR = REPO_ROOT / "evidencias" / "classification"
+EVIDENCE_DIR = REPO_ROOT / "evidences" / "classification"
 
 # Predefined categories (same names as data/catalog.json and the README).
 CATEGORIES = ["design_references", "creative_methods", "project_lessons"]
@@ -364,7 +364,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--file", action="append", default=[],
                         help="Path of a .txt file to classify (can be repeated)")
     parser.add_argument("--save-evidence", action="store_true",
-                        help="Save console output, CSV and confusion matrix in evidencias/classification/")
+                        help="Save console output, CSV and confusion matrix in evidences/classification/")
     args = parser.parse_args(argv)
 
     extra = list(args.text)
