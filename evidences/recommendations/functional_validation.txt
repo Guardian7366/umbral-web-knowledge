@@ -8,7 +8,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: 
+Select an option:
 Available documents:
 UW01 - Visual Hierarchy for Content-Heavy Pages
 UW02 - Motion and Visual Feedback in an Interface
@@ -26,7 +26,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter document ID: 
+Select an option: Enter document ID:
 Recommended documents
 =================================================================
 
@@ -63,7 +63,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter document ID: 
+Select an option: Enter document ID:
 Recommended documents
 =================================================================
 
@@ -100,7 +100,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter document ID: 
+Select an option: Enter document ID:
 Recommended documents
 =================================================================
 
@@ -137,7 +137,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter your search query: 
+Select an option: Enter your search query:
 Recommended documents
 =================================================================
 
@@ -174,7 +174,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter your search query: 
+Select an option: Enter your search query:
 Recommended documents
 =================================================================
 
@@ -211,7 +211,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter your search query: 
+Select an option: Enter your search query:
 Recommended documents
 =================================================================
 
@@ -230,7 +230,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter document ID: 
+Select an option: Enter document ID:
 Error: Unknown document ID: UW99
 
 Available options:
@@ -239,7 +239,7 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: Enter your search query: 
+Select an option: Enter your search query:
 No relevant recommendations found.
 
 Available options:
@@ -248,5 +248,5 @@ Available options:
 3. List available documents
 0. Exit
 
-Select an option: 
+Select an option:
 Recommendation session ended.
