@@ -165,3 +165,32 @@ See [src/README.md](src/README.md) for details about classification, retrieval, 
 ## Academic context
 
 The company, projects, and observations described in the documents are fictional. The collection was created for academic testing and demonstration.
+
+## Document recommendation system (F02)
+
+The document recommendation system is implemented
+and validated.
+
+It supports:
+
+- Recommendations based on a selected document.
+- Recommendations based on the current search query.
+- Cosine similarity scores.
+- Shared relevant terms and recommendation explanations.
+- Configurable result limits and similarity thresholds.
+
+Run the recommendation interface:
+
+```bash
+python src/recommendation_cli.py
+```
+
+The complete automated regression suite now contains
+29 tests: nine retrieval tests and 20 recommendation
+tests.
+
+All 29 tests passed during F02 validation.
+
+See [F02 technical documentation](docs/F02-recommendation-system.md)
+for the methodology, execution examples, validation
+results, limitations, and evidence references.

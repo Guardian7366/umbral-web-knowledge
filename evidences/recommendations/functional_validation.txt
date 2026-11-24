@@ -1,0 +1,252 @@
+=================================================================
+UMBRAL WEB - Document Recommendation System
+=================================================================
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: 
+Available documents:
+UW01 - Visual Hierarchy for Content-Heavy Pages
+UW02 - Motion and Visual Feedback in an Interface
+UW03 - Modular Composition for a Flexible Identity
+UW04 - Brief Idea Generation Session
+UW05 - Short Test of a Visual Proposal
+UW06 - Concept Review Before Choosing a Direction
+UW07 - Project Closeout for the Aula Clara Course Catalog
+UW08 - Project Closeout for the Estudio Norte Portfolio
+UW09 - Project Closeout for the Mesa Abierta Digital Menu
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter document ID: 
+Recommended documents
+=================================================================
+
+Recommendation 1
+ID: UW08
+Title: Project Closeout for the Estudio Norte Portfolio
+Category: project_lessons
+Cosine similarity: 0.073684
+Shared terms: motion, navigation, moments, effects, animations
+Explanation: Recommended based on document UW02. Shared relevant terms: motion, navigation, moments, effects, animations.
+-----------------------------------------------------------------
+
+Recommendation 2
+ID: UW01
+Title: Visual Hierarchy for Content-Heavy Pages
+Category: design_references
+Cosine similarity: 0.055757
+Shared terms: reference, reading, proposed, easy, proposed reference
+Explanation: Recommended based on document UW02. Shared relevant terms: reference, reading, proposed, easy, proposed reference.
+-----------------------------------------------------------------
+
+Recommendation 3
+ID: UW09
+Title: Project Closeout for the Mesa Abierta Digital Menu
+Category: project_lessons
+Cosine similarity: 0.041318
+Shared terms: simplified, brief, retained, makes, navigation
+Explanation: Recommended based on document UW02. Shared relevant terms: simplified, brief, retained, makes, navigation.
+-----------------------------------------------------------------
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter document ID: 
+Recommended documents
+=================================================================
+
+Recommendation 1
+ID: UW06
+Title: Concept Review Before Choosing a Direction
+Category: creative_methods
+Cosine similarity: 0.071523
+Shared terms: directions, person, discarded, problem, group
+Explanation: Recommended based on document UW04. Shared relevant terms: directions, person, discarded, problem, group.
+-----------------------------------------------------------------
+
+Recommendation 2
+ID: UW05
+Title: Short Test of a Visual Proposal
+Category: creative_methods
+Cosine similarity: 0.039162
+Shared terms: tested, record, idea, prototype, makes
+Explanation: Recommended based on document UW04. Shared relevant terms: tested, record, idea, prototype, makes.
+-----------------------------------------------------------------
+
+Recommendation 3
+ID: UW02
+Title: Motion and Visual Feedback in an Interface
+Category: design_references
+Cosine similarity: 0.028866
+Shared terms: makes possible, makes, help, possible, difficult
+Explanation: Recommended based on document UW04. Shared relevant terms: makes possible, makes, help, possible, difficult.
+-----------------------------------------------------------------
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter document ID: 
+Recommended documents
+=================================================================
+
+Recommendation 1
+ID: UW09
+Title: Project Closeout for the Mesa Abierta Digital Menu
+Category: project_lessons
+Cosine similarity: 0.104333
+Shared terms: adjusted, materials, proposal, designing, options
+Explanation: Recommended based on document UW07. Shared relevant terms: adjusted, materials, proposal, designing, options.
+-----------------------------------------------------------------
+
+Recommendation 2
+ID: UW05
+Title: Short Test of a Visual Proposal
+Category: creative_methods
+Cosine similarity: 0.062398
+Shared terms: tested, proposal, needed, observation, prototype
+Explanation: Recommended based on document UW07. Shared relevant terms: tested, proposal, needed, observation, prototype.
+-----------------------------------------------------------------
+
+Recommendation 3
+ID: UW01
+Title: Visual Hierarchy for Content-Heavy Pages
+Category: design_references
+Cosine similarity: 0.055929
+Shared terms: information, content, catalogs, distinguish, future
+Explanation: Recommended based on document UW07. Shared relevant terms: information, content, catalogs, distinguish, future.
+-----------------------------------------------------------------
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter your search query: 
+Recommended documents
+=================================================================
+
+Recommendation 1
+ID: UW04
+Title: Brief Idea Generation Session
+Category: creative_methods
+Cosine similarity: 0.200033
+Shared terms: session, ideas, design
+Explanation: Recommended based on the search query. Shared relevant terms: session, ideas, design.
+-----------------------------------------------------------------
+
+Recommendation 2
+ID: UW05
+Title: Short Test of a Visual Proposal
+Category: creative_methods
+Cosine similarity: 0.024187
+Shared terms: design
+Explanation: Recommended based on the search query. Shared relevant terms: design.
+-----------------------------------------------------------------
+
+Recommendation 3
+ID: UW02
+Title: Motion and Visual Feedback in an Interface
+Category: design_references
+Cosine similarity: 0.023241
+Shared terms: design
+Explanation: Recommended based on the search query. Shared relevant terms: design.
+-----------------------------------------------------------------
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter your search query: 
+Recommended documents
+=================================================================
+
+Recommendation 1
+ID: UW08
+Title: Project Closeout for the Estudio Norte Portfolio
+Category: project_lessons
+Cosine similarity: 0.125356
+Shared terms: navigation, animations, review
+Explanation: Recommended based on the search query. Shared relevant terms: navigation, animations, review.
+-----------------------------------------------------------------
+
+Recommendation 2
+ID: UW02
+Title: Motion and Visual Feedback in an Interface
+Category: design_references
+Cosine similarity: 0.105533
+Shared terms: animations, difficult, navigation
+Explanation: Recommended based on the search query. Shared relevant terms: animations, difficult, navigation.
+-----------------------------------------------------------------
+
+Recommendation 3
+ID: UW07
+Title: Project Closeout for the Aula Clara Course Catalog
+Category: project_lessons
+Cosine similarity: 0.072616
+Shared terms: review, difficult
+Explanation: Recommended based on the search query. Shared relevant terms: review, difficult.
+-----------------------------------------------------------------
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter your search query: 
+Recommended documents
+=================================================================
+
+Recommendation 1
+ID: UW07
+Title: Project Closeout for the Aula Clara Course Catalog
+Category: project_lessons
+Cosine similarity: 0.232856
+Shared terms: course, aula, aula clara, catalog, clara
+Explanation: Recommended based on the search query. Shared relevant terms: course, aula, aula clara, catalog, clara.
+-----------------------------------------------------------------
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter document ID: 
+Error: Unknown document ID: UW99
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: Enter your search query: 
+No relevant recommendations found.
+
+Available options:
+1. Recommend by document
+2. Recommend by search query
+3. List available documents
+0. Exit
+
+Select an option: 
+Recommendation session ended.
