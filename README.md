@@ -1,11 +1,8 @@
 # Umbral Web
 
-An academic knowledge management prototype for a
-fictional software company specializing in web design.
+An academic knowledge management prototype for a fictional software company specializing in web design.
 
-The system aims to retrieve references, creative methods,
-and lessons learned that help the team move beyond
-repeated solutions.
+The system aims to retrieve references, creative methods, and lessons learned that help the team move beyond repeated solutions.
 
 ## Project status
 
@@ -17,30 +14,29 @@ The initial prototype includes:
 - Basic document retrieval using cosine similarity.
 - A conceptual knowledge graph and knowledge lifecycle.
 - Historical classification and search evidence.
+- A shared document retrieval engine.
+- Automated retrieval regression tests.
 
-The project is being prepared for its next development
-phase, which will include recommendations, a chatbot,
-an interactive knowledge graph, and web deployment.
+The project is being prepared for its next development phase, which will include recommendations, a chatbot, an interactive knowledge graph, and web deployment.
 
 ## Project structure
 
 - `data/documents/`: internal documents in UTF-8.
 - `data/catalog.json`: document metadata and categories.
 - `src/classifier.py`: automated document classification.
-- `src/interactive.py`: basic document retrieval.
+- `src/retrieval.py`: shared document retrieval engine.
+- `src/interactive.py`: command-line document retrieval.
 - `src/README.md`: technical documentation.
+- `tests/`: automated regression tests.
 - `docs/`: knowledge lifecycle and ontology diagrams.
 - `evidences/`: historical execution evidence.
 - `requirements.txt`: direct Python dependencies.
 
 ## Document categories
 
-- `design_references`: ideas and criteria to guide
-  a visual proposal.
-- `creative_methods`: procedures for generating,
-  testing, or reviewing concepts.
-- `project_lessons`: reference materials and conclusions
-  from previous work.
+- `design_references`: ideas and criteria to guide a visual proposal.
+- `creative_methods`: procedures for generating, testing, or reviewing concepts.
+- `project_lessons`: reference materials and conclusions from previous work.
 
 ## Document collection
 
@@ -90,8 +86,7 @@ On Linux or macOS:
 
 ## Running the prototype
 
-The following commands assume that the virtual
-environment is active.
+The following commands assume that the virtual environment is active.
 
 ### Document classification
 
@@ -125,6 +120,8 @@ Suggested queries:
 
 Press Enter without entering a query to exit.
 
+If no relevant documents are found, the system displays an informative message.
+
 ## Baseline evaluation
 
 | Model | Test set | Leave-one-out |
@@ -132,35 +129,39 @@ Press Enter without entering a query to exit.
 | Multinomial Naive Bayes | 3/3 | 7/9 |
 | Logistic Regression | 3/3 | 5/9 |
 
-These results were reproduced locally during the
-project foundation phase.
+These results were reproduced locally during the project foundation phase.
 
 Naive Bayes is the default classification model.
 
-The catalog defines six training documents and three
-test documents. All nine documents are available
-for retrieval.
+The catalog defines six training documents and three test documents. All nine documents are available for retrieval.
 
-Category labels and dataset split metadata must not
-be included as classification input.
+Category labels and dataset split metadata must not be included as classification input.
+
+## Automated tests
+
+Run the regression test suite from the repository root:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The suite contains nine automated tests that verify that the shared retrieval engine preserves the baseline behavior of the original prototype.
+
+All nine tests passed during the modular foundation validation.
 
 ## Limitations
 
 - The document collection contains only nine texts.
-- Classification results do not establish generalization
-  to larger or unseen document collections.
-- Document retrieval is based on TF-IDF and cosine
-  similarity rather than contextual embeddings.
+- Classification results do not establish generalization to larger or unseen document collections.
+- Document retrieval is based on TF-IDF and cosine similarity rather than contextual embeddings.
 - The current document collection is written in English.
 - The existing prototype uses a command-line interface.
+- Recommendations, chatbot interaction, interactive graph visualization, and web deployment are planned for subsequent development phases.
 
 ## Technical documentation
 
-See [src/README.md](src/README.md) for details about
-classification, retrieval, and historical evidence.
+See [src/README.md](src/README.md) for details about classification, retrieval, automated tests, and historical evidence.
 
 ## Academic context
 
-The company, projects, and observations described
-in the documents are fictional. The collection was
-created for academic testing and demonstration.
+The company, projects, and observations described in the documents are fictional. The collection was created for academic testing and demonstration.
