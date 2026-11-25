@@ -5,6 +5,8 @@ from pathlib import Path
 
 from streamlit.testing.v1 import AppTest
 
+from prototype_test_support import dispatch
+
 
 APP_PATH = (
     Path(__file__).resolve().parent.parent
@@ -27,11 +29,7 @@ class TestSemanticWebIntegration(unittest.TestCase):
 
         self.assert_no_exceptions()
 
-        self.app.radio(
-            key="navigation"
-        ).set_value(
-            "Recommendations"
-        ).run()
+        dispatch(self.app, "navigate", page="Recommendations")
 
         self.assert_no_exceptions()
 

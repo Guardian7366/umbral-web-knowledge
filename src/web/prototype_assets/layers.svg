@@ -1,0 +1,35 @@
+<svg class="layers" viewBox="0 0 650 396" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="metal" x1="0%" x2="85%" y1="100%" y2="0%">
+      <stop stop-color="#2256ee"/><stop offset=".44" stop-color="#082754"/>
+      <stop offset=".68" stop-color="#1366bc"/><stop offset="1" stop-color="#102f97"/>
+    </linearGradient>
+    <linearGradient id="paper" y2="1" x2=".8">
+      <stop stop-color="#fff"/><stop offset="1" stop-color="#e3f1fd"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop stop-color="#d0f6fa" stop-opacity=".8"/><stop offset=".65" stop-color="#68e8f2" stop-opacity=".52"/>
+      <stop offset="1" stop-color="#5dccdd" stop-opacity=".46"/>
+    </linearGradient>
+    <filter id="layer-shadow" x="-.2" width="1.4" y="-.6" height="2.4">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+  <ellipse cx="340" cy="286" rx="270" ry="37" fill="#082754" opacity=".23" transform="rotate(-14 340 286)" filter="url(#layer-shadow)"/>
+  <g>
+    <path fill="#082754" d="M21 248 520 142 599 200 599 208 405 262 377 292 324 281 131 344 21 256Z"/>
+    <path fill="url(#metal)" stroke="#173fc4" stroke-width="2" d="M21 248 520 142 599 200 405 254 377 284 324 273 131 336Z"/>
+    <path fill="none" stroke="#4ab5ff" opacity=".75" d="M21 248 131 336 324 273 377 284 405 254 599 200"/>
+  </g>
+  <g>
+    <path fill="#96adc3" d="M33 191 532 87 610 146 610 153 418 206 390 236 337 225 144 288 33 198Z"/>
+    <path fill="url(#paper)" stroke="#d5e4f0" d="M33 191 532 87 610 146 418 199 390 229 337 218 144 281Z"/>
+    <path stroke="#1d4bdb" stroke-width="5" d="m34 192 110 90"/>
+  </g>
+  <g class="optical-plane">
+    <path fill="#1788a4" d="M44 126 155 213 348 150 401 161 429 131 642 72V78L429 137 401 167 348 156 155 219 44 133Z"/>
+    <path fill="url(#glass)" stroke="#27afca" d="M44 126 554 20 642 72 429 131 401 161 348 150 155 213Z"/>
+    <path fill="none" stroke="#68e8f2" stroke-width="3" d="M155 213 348 150 401 161 429 131 642 72"/>
+    <path stroke="#1d4bdb" stroke-width="5" d="m44 127 111 87"/>
+  </g>
+</svg>

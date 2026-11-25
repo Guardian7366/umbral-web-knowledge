@@ -5,6 +5,8 @@ from pathlib import Path
 
 from streamlit.testing.v1 import AppTest
 
+from prototype_test_support import dispatch, prototype_data
+
 
 APP_PATH = (
     Path(__file__).resolve().parent.parent / "app.py"
@@ -30,9 +32,7 @@ class TestWebIntegration(unittest.TestCase):
         )
 
     def navigate(self, page):
-        self.app.radio(
-            key="navigation"
-        ).set_value(page).run()
+        dispatch(self.app, "navigate", page=page)
 
         self.assert_no_exceptions()
 
@@ -116,31 +116,15 @@ class TestWebIntegration(unittest.TestCase):
         self.click_button("Get recommendations")
 
     def submit_question(self, question):
-        self.app.chat_input[0].set_value(
-            question
-        ).run()
-
+        dispatch(self.app, "submit", text=question)
         self.assert_no_exceptions()
 
     def test_overview_metrics(self):
-        expected_metrics = [
-            ("Documents", "9"),
-            ("Knowledge categories", "3"),
-            ("Validated engine tests (F03)", "49"),
-            ("Documents", "3"),
-            ("Documents", "3"),
-            ("Documents", "3"),
-        ]
-
-        actual_metrics = [
-            (metric.label, str(metric.value))
-            for metric in self.app.metric
-        ]
-
-        self.assertCountEqual(
-            actual_metrics,
-            expected_metrics,
-        )
+        markup = prototype_data(self.app)["markup"]
+        self.assertIn("9 documents", markup)
+        self.assertIn("3 categories", markup)
+        for category in ("Design references", "Creative methods", "Project lessons"):
+            self.assertIn(f"{category} · 3 documents", markup)
 
     def test_all_navigation_pages(self):
         pages = (
@@ -156,17 +140,19 @@ class TestWebIntegration(unittest.TestCase):
         for page in pages:
             with self.subTest(page=page):
                 self.navigate(page)
-                self.assertTrue(self.app.title)
+                data = prototype_data(self.app)
+                self.assertEqual(data["page"], page)
+                self.assertIn(f'data-route="{page}" aria-current="page"', data["markup"])
+                if page in ("Overview", "Assistant"):
+                    self.assertIn('<h1 id="page-title"', data["markup"])
+                else:
+                    self.assertTrue(self.app.title)
 
     def test_overview_navigation_button(self):
-        self.click_button("Open Documents")
-
-        self.assertEqual(
-            self.app.radio(
-                key="navigation"
-            ).value,
-            "Documents",
-        )
+        self.assertIn("Browse documents", prototype_data(self.app)["markup"])
+        dispatch(self.app, "navigate", page="Documents")
+        self.assert_no_exceptions()
+        self.assertEqual(self.app.session_state["navigation"], "Documents")
 
     def test_document_library(self):
         self.navigate("Documents")
@@ -466,10 +452,11 @@ class TestWebIntegration(unittest.TestCase):
     def test_chatbot_example_question(self):
         self.navigate("Assistant")
 
-        self.click_button(
-            "How can we organize a session "
-            "to generate design ideas?"
-        )
+        suggestions = prototype_data(self.app)["suggestions"]
+        self.assertEqual(len(suggestions), 2)
+        self.assertEqual(suggestions[0], "How can we organize a session to generate design ideas?")
+        self.assertEqual(suggestions[1], "How should the team test a visual proposal before development?")
+        self.submit_question(suggestions[0])
 
         history = self.app.session_state[
             "assistant_history"
@@ -535,9 +522,9 @@ class TestWebIntegration(unittest.TestCase):
             4,
         )
 
-        self.click_button(
-            "Clear conversation"
-        )
+        self.assertIn("Clear this conversation?", prototype_data(self.app)["markup"])
+        dispatch(self.app, "clear")
+        self.assert_no_exceptions()
 
         self.assertEqual(
             self.app.session_state[
