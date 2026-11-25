@@ -6,7 +6,7 @@ The system aims to retrieve references, creative methods, and lessons learned th
 
 ## Project status
 
-The initial prototype includes:
+The current prototype includes:
 
 - A repository of nine fictional internal documents.
 - Automated document classification using TF-IDF.
@@ -16,8 +16,10 @@ The initial prototype includes:
 - Historical classification and search evidence.
 - A shared document retrieval engine.
 - Automated retrieval regression tests.
+- Document recommendations with explanations.
+- An extractive document-based chatbot.
 
-The project is being prepared for its next development phase, which will include recommendations, a chatbot, an interactive knowledge graph, and web deployment.
+The classification, retrieval, recommendation, and chatbot components are implemented and validated. Interactive knowledge graph integration, web interface development, and public deployment remain pending.
 
 ## Project structure
 
@@ -26,6 +28,10 @@ The project is being prepared for its next development phase, which will include
 - `src/classifier.py`: automated document classification.
 - `src/retrieval.py`: shared document retrieval engine.
 - `src/interactive.py`: command-line document retrieval.
+- `src/recommender.py`: document recommendation engine.
+- `src/recommendation_cli.py`: recommendation interface.
+- `src/chatbot.py`: document-based chatbot engine.
+- `src/chatbot_cli.py`: chatbot conversation interface.
 - `src/README.md`: technical documentation.
 - `tests/`: automated regression tests.
 - `docs/`: knowledge lifecycle and ontology diagrams.
@@ -145,9 +151,9 @@ Run the regression test suite from the repository root:
 python -m unittest discover -s tests -v
 ```
 
-The suite contains nine automated tests that verify that the shared retrieval engine preserves the baseline behavior of the original prototype.
+The complete regression suite contains 49 automated tests covering retrieval, recommendations, and chatbot behavior.
 
-All nine tests passed during the modular foundation validation.
+All 49 tests passed during F03 validation.
 
 ## Limitations
 
@@ -156,7 +162,8 @@ All nine tests passed during the modular foundation validation.
 - Document retrieval is based on TF-IDF and cosine similarity rather than contextual embeddings.
 - The current document collection is written in English.
 - The existing prototype uses a command-line interface.
-- Recommendations, chatbot interaction, interactive graph visualization, and web deployment are planned for subsequent development phases.
+- Recommendations and chatbot interaction are currently available through command-line interfaces.
+- Interactive graph visualization, web integration, and public deployment remain pending.
 
 ## Technical documentation
 
@@ -194,3 +201,36 @@ All 29 tests passed during F02 validation.
 See [F02 technical documentation](docs/F02-recommendation-system.md)
 for the methodology, execution examples, validation
 results, limitations, and evidence references.
+
+## Document chatbot (F03)
+
+The document-based chatbot is implemented and validated.
+
+It supports:
+
+- Natural language questions in English.
+- Weighted content and title ranking.
+- Vocabulary coverage validation.
+- Extractive answers based on original document sentences.
+- Supporting document sources.
+- Abstention when relevant information is insufficient.
+
+Run the chatbot:
+
+```bash
+python src/chatbot_cli.py
+```
+
+The chatbot passed 16 functional validation cases,
+including ten answered questions, five abstentions,
+and one empty input validation.
+
+All nine source documents were represented in the
+positive validation cases.
+
+The complete automated regression suite contains
+49 tests, all of which passed during F03 validation.
+
+See [F03 technical documentation](docs/F03-document-chatbot.md)
+for the methodology, validation examples, limitations,
+and evidence references.

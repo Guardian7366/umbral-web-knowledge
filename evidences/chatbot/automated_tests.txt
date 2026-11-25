@@ -1,0 +1,54 @@
+test_all_documents_are_represented (test_chatbot.TestDocumentChatbot.test_all_documents_are_represented) ... ok
+test_aula_clara_answer_content (test_chatbot.TestDocumentChatbot.test_aula_clara_answer_content) ... ok
+test_custom_sentence_limit (test_chatbot.TestDocumentChatbot.test_custom_sentence_limit) ... ok
+test_default_sentence_limit (test_chatbot.TestDocumentChatbot.test_default_sentence_limit) ... ok
+test_document_collection (test_chatbot.TestDocumentChatbot.test_document_collection) ... ok
+test_empty_questions (test_chatbot.TestDocumentChatbot.test_empty_questions) ... ok
+test_estudio_norte_answer_content (test_chatbot.TestDocumentChatbot.test_estudio_norte_answer_content) ... ok
+test_fragments_are_consecutive (test_chatbot.TestDocumentChatbot.test_fragments_are_consecutive) ... ok
+test_fragments_are_original (test_chatbot.TestDocumentChatbot.test_fragments_are_original) ... ok
+test_high_document_threshold (test_chatbot.TestDocumentChatbot.test_high_document_threshold) ... ok
+test_ideation_answer_content (test_chatbot.TestDocumentChatbot.test_ideation_answer_content) ... ok
+test_invalid_parameters (test_chatbot.TestDocumentChatbot.test_invalid_parameters) ... ok
+test_multiple_document_budget (test_chatbot.TestDocumentChatbot.test_multiple_document_budget) ... ok
+test_out_of_scope_questions (test_chatbot.TestDocumentChatbot.test_out_of_scope_questions) ... ok
+test_positive_questions (test_chatbot.TestDocumentChatbot.test_positive_questions) ... ok
+test_response_is_reproducible (test_chatbot.TestDocumentChatbot.test_response_is_reproducible) ... ok
+test_shared_retrieval_engine (test_chatbot.TestDocumentChatbot.test_shared_retrieval_engine) ... ok
+test_source_metadata (test_chatbot.TestDocumentChatbot.test_source_metadata) ... ok
+test_sources_match_fragments (test_chatbot.TestDocumentChatbot.test_sources_match_fragments) ... ok
+test_visual_proposal_answer_content (test_chatbot.TestDocumentChatbot.test_visual_proposal_answer_content) ... ok
+test_aula_clara_document_recommendations (test_recommender.TestRecommendationEngine.test_aula_clara_document_recommendations) ... ok
+test_document_id_normalization (test_recommender.TestRecommendationEngine.test_document_id_normalization) ... ok
+test_empty_query (test_recommender.TestRecommendationEngine.test_empty_query) ... ok
+test_ideation_document_recommendations (test_recommender.TestRecommendationEngine.test_ideation_document_recommendations) ... ok
+test_invalid_similarity_threshold (test_recommender.TestRecommendationEngine.test_invalid_similarity_threshold) ... ok
+test_invalid_top_k (test_recommender.TestRecommendationEngine.test_invalid_top_k) ... ok
+test_motion_document_recommendations (test_recommender.TestRecommendationEngine.test_motion_document_recommendations) ... ok
+test_no_results_above_threshold (test_recommender.TestRecommendationEngine.test_no_results_above_threshold) ... ok
+test_query_animation_recommendations (test_recommender.TestRecommendationEngine.test_query_animation_recommendations) ... ok
+test_query_aula_clara_recommendations (test_recommender.TestRecommendationEngine.test_query_aula_clara_recommendations) ... ok
+test_query_ideation_recommendations (test_recommender.TestRecommendationEngine.test_query_ideation_recommendations) ... ok
+test_recommendation_explanations (test_recommender.TestRecommendationEngine.test_recommendation_explanations) ... ok
+test_shared_retrieval_engine (test_recommender.TestRecommendationEngine.test_shared_retrieval_engine) ... ok
+test_shared_terms_are_supported_by_vectors (test_recommender.TestRecommendationEngine.test_shared_terms_are_supported_by_vectors) ... ok
+test_similarity_order (test_recommender.TestRecommendationEngine.test_similarity_order) ... ok
+test_similarity_threshold (test_recommender.TestRecommendationEngine.test_similarity_threshold) ... ok
+test_source_document_is_excluded (test_recommender.TestRecommendationEngine.test_source_document_is_excluded) ... ok
+test_top_k (test_recommender.TestRecommendationEngine.test_top_k) ... ok
+test_unknown_document (test_recommender.TestRecommendationEngine.test_unknown_document) ... ok
+test_unknown_query (test_recommender.TestRecommendationEngine.test_unknown_query) ... ok
+test_animation_query (test_retrieval.TestRetrievalEngine.test_animation_query) ... ok
+test_aula_clara_query (test_retrieval.TestRetrievalEngine.test_aula_clara_query) ... ok
+test_document_collection (test_retrieval.TestRetrievalEngine.test_document_collection) ... ok
+test_empty_query (test_retrieval.TestRetrievalEngine.test_empty_query) ... ok
+test_ideation_query (test_retrieval.TestRetrievalEngine.test_ideation_query) ... ok
+test_invalid_top_k (test_retrieval.TestRetrievalEngine.test_invalid_top_k) ... ok
+test_similarity_order (test_retrieval.TestRetrievalEngine.test_similarity_order) ... ok
+test_top_k (test_retrieval.TestRetrievalEngine.test_top_k) ... ok
+test_unknown_query (test_retrieval.TestRetrievalEngine.test_unknown_query) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 0.184s
+
+OK
