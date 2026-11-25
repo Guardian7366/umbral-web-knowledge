@@ -1,6 +1,8 @@
-"""Web interface for the document recommendation system."""
+"""Web interface for lexical and semantic recommendations."""
 
 from __future__ import annotations
+
+import logging
 
 import streamlit as st
 
@@ -10,8 +12,45 @@ from src.web.document_views import (
 )
 
 
+LOGGER = logging.getLogger(__name__)
+
+LEXICAL_METHOD = "Lexical (TF-IDF)"
+SEMANTIC_METHOD = "Semantic (BGE)"
+
+METHOD_DESCRIPTIONS = {
+    LEXICAL_METHOD: (
+        "Find related documents using weighted vocabulary "
+        "and lexical similarity."
+    ),
+    SEMANTIC_METHOD: (
+        "Find conceptually related documents using "
+        "contextual text embeddings."
+    ),
+}
+
+DEFAULT_THRESHOLDS = {
+    LEXICAL_METHOD: 0.0,
+    SEMANTIC_METHOD: 0.55,
+}
+
+
+@st.cache_resource
+def initialize_semantic_engine(_retrieval):
+    """Initialize the semantic engine only when requested.
+
+    The retrieval argument is excluded from Streamlit hashing.
+    This application uses a single fixed document collection.
+    """
+
+    from src.semantic_recommender import (
+        SemanticRecommendationEngine,
+    )
+
+    return SemanticRecommendationEngine(_retrieval)
+
+
 def render_recommendations(recommender) -> None:
-    """Display recommendations based on documents or search queries."""
+    """Display lexical or semantic recommendations."""
 
     st.title("Knowledge recommendations")
 
@@ -19,6 +58,31 @@ def render_recommendations(recommender) -> None:
         "Discover related knowledge based on a selected "
         "document or your current search context."
     )
+
+    method = st.radio(
+        "Recommendation method",
+        options=[
+            LEXICAL_METHOD,
+            SEMANTIC_METHOD,
+        ],
+        horizontal=True,
+        key="recommendation_method",
+    )
+
+    st.caption(
+        METHOD_DESCRIPTIONS[method]
+    )
+
+    is_semantic = method == SEMANTIC_METHOD
+
+    if is_semantic:
+
+        st.info(
+            "Semantic recommendations use the "
+            "BAAI/bge-small-en-v1.5 embedding model. "
+            "The first request may require a model "
+            "download and initialization."
+        )
 
     documents = recommender.retrieval.documents
 
@@ -35,6 +99,18 @@ def render_recommendations(recommender) -> None:
         ],
         horizontal=True,
         key="recommendation_mode",
+    )
+
+    method_key = (
+        "semantic"
+        if is_semantic
+        else "lexical"
+    )
+
+    mode_key = (
+        "document"
+        if mode == "By document"
+        else "query"
     )
 
     with st.form("recommendation_form"):
@@ -59,16 +135,23 @@ def render_recommendations(recommender) -> None:
             query = st.text_input(
                 "Search context",
                 placeholder=(
-                    "How can we organize "
-                    "a design session?"
+                    "How can we brainstorm "
+                    "new concepts as a team?"
                 ),
             )
+
+        maximum_results = (
+            len(documents) - 1
+            if mode == "By document"
+            else len(documents)
+        )
 
         top_k = st.slider(
             "Maximum recommendations",
             min_value=1,
-            max_value=8 if mode == "By document" else 9,
-            value=3,
+            max_value=maximum_results,
+            value=min(3, maximum_results),
+            key=f"recommendation_limit_{mode_key}",
         )
 
         with st.expander("Advanced settings"):
@@ -77,14 +160,25 @@ def render_recommendations(recommender) -> None:
                 "Minimum cosine similarity",
                 min_value=0.0,
                 max_value=1.0,
-                value=0.0,
+                value=DEFAULT_THRESHOLDS[method],
                 step=0.01,
+                key=f"recommendation_threshold_{method_key}",
             )
 
-            st.caption(
-                "Increase this threshold to exclude "
-                "documents with weaker lexical similarity."
-            )
+            if is_semantic:
+
+                st.caption(
+                    "The initial semantic threshold of "
+                    "0.55 is based on preliminary "
+                    "functional validation."
+                )
+
+            else:
+
+                st.caption(
+                    "Increase this threshold to exclude "
+                    "documents with weaker lexical similarity."
+                )
 
         submitted = st.form_submit_button(
             "Get recommendations",
@@ -98,38 +192,81 @@ def render_recommendations(recommender) -> None:
             None,
         )
 
-        if mode == "By document":
+        if (
+            mode == "By search query"
+            and not query.strip()
+        ):
 
-            results = recommender.recommend_by_document(
-                selected_document,
-                top_k=top_k,
-                min_similarity=min_similarity,
+            st.warning(
+                "Please enter a search query."
             )
 
-            context = (
-                f"{selected_document} - "
-                f"{document_by_id[selected_document].title}"
+            return
+
+        try:
+
+            with st.spinner(
+                "Retrieving related knowledge..."
+            ):
+
+                if is_semantic:
+
+                    engine = initialize_semantic_engine(
+                        recommender.retrieval
+                    )
+
+                else:
+
+                    engine = recommender
+
+                if mode == "By document":
+
+                    results = engine.recommend_by_document(
+                        selected_document,
+                        top_k=top_k,
+                        min_similarity=min_similarity,
+                    )
+
+                    context = (
+                        f"{selected_document} - "
+                        f"{document_by_id[selected_document].title}"
+                    )
+
+                else:
+
+                    results = engine.recommend_by_query(
+                        query.strip(),
+                        top_k=top_k,
+                        min_similarity=min_similarity,
+                    )
+
+                    context = query.strip()
+
+        except Exception:
+
+            LOGGER.exception(
+                "Recommendation processing failed."
             )
 
-        else:
+            if is_semantic:
 
-            if not query.strip():
-
-                st.warning(
-                    "Please enter a search query."
+                st.error(
+                    "Semantic recommendations could not "
+                    "be generated. Please retry or select "
+                    "the lexical recommendation method."
                 )
 
-                return
+            else:
 
-            results = recommender.recommend_by_query(
-                query.strip(),
-                top_k=top_k,
-                min_similarity=min_similarity,
-            )
+                st.error(
+                    "Recommendations could not be "
+                    "generated. Please try again."
+                )
 
-            context = query.strip()
+            return
 
         st.session_state["recommendation_result"] = {
+            "method": method,
             "mode": mode,
             "context": context,
             "results": results,
@@ -147,6 +284,9 @@ def render_recommendations(recommender) -> None:
     if saved_result["mode"] != mode:
         return
 
+    if saved_result["method"] != method:
+        return
+
     results = saved_result["results"]
 
     st.divider()
@@ -154,11 +294,20 @@ def render_recommendations(recommender) -> None:
     st.subheader("Recommended documents")
 
     st.caption(
+        f"Method: {saved_result['method']}"
+    )
+
+    st.caption(
         f"Mode: {saved_result['mode']}"
     )
 
     st.caption(
         f"Context: {saved_result['context']}"
+    )
+
+    st.caption(
+        f"Minimum similarity: "
+        f"{saved_result['min_similarity']:.2f}"
     )
 
     st.caption(
@@ -190,7 +339,7 @@ def render_recommendations(recommender) -> None:
 
             st.subheader(document.title)
 
-            first, second = st.columns(2)
+            first, second = st.columns([2, 1])
 
             with first:
 
@@ -198,6 +347,12 @@ def render_recommendations(recommender) -> None:
                     category_label(
                         document.category
                     )
+                )
+
+                st.caption(
+                    "Semantic embedding similarity"
+                    if is_semantic
+                    else "Lexical TF-IDF similarity"
                 )
 
             with second:
@@ -211,7 +366,15 @@ def render_recommendations(recommender) -> None:
 
             st.write(result.explanation)
 
-            st.markdown("**Shared relevant terms**")
+            terms_heading = (
+                "Supplementary shared lexical terms"
+                if is_semantic
+                else "Shared relevant terms"
+            )
+
+            st.markdown(
+                f"**{terms_heading}**"
+            )
 
             if result.shared_terms:
 
@@ -224,7 +387,16 @@ def render_recommendations(recommender) -> None:
             else:
 
                 st.caption(
-                    "No shared terms available."
+                    "No shared terms were found "
+                    "in the TF-IDF vocabulary."
+                )
+
+            if is_semantic:
+
+                st.caption(
+                    "Shared lexical terms are supplementary "
+                    "evidence and do not determine the "
+                    "semantic ranking."
                 )
 
             with st.expander(
@@ -233,29 +405,61 @@ def render_recommendations(recommender) -> None:
 
                 render_document_content(document)
 
-    st.caption(
-        "Recommendations use TF-IDF and cosine "
-        "similarity. Scores represent lexical "
-        "relatedness, not confidence probabilities."
-    )
+    if is_semantic:
+
+        st.caption(
+            "Semantic scores measure cosine similarity "
+            "between contextual embeddings. They are "
+            "not confidence probabilities."
+        )
+
+    else:
+
+        st.caption(
+            "Lexical scores measure cosine similarity "
+            "between TF-IDF vectors. They are "
+            "not confidence probabilities."
+        )
 
     with st.expander(
         "About the recommendation system"
     ):
 
+        st.markdown("**Lexical recommendations**")
+
         st.write(
-            "The system compares weighted text "
-            "representations from the internal "
-            "document collection."
+            "TF-IDF represents documents using weighted "
+            "terms and compares their lexical similarity."
+        )
+
+        st.markdown("**Semantic recommendations**")
+
+        st.write(
+            "BAAI/bge-small-en-v1.5 represents document "
+            "titles and content using 384-dimensional "
+            "contextual embeddings."
         )
 
         st.write(
-            "Document-based recommendations exclude "
-            "the selected source document."
+            "The semantic model runs locally on CPU "
+            "through FastEmbed and ONNX Runtime."
+        )
+
+        st.markdown("**Shared behavior**")
+
+        st.write(
+            "Both methods exclude the selected source "
+            "document in document-based recommendations."
         )
 
         st.write(
-            "Search-context recommendations use "
-            "the current query without storing "
-            "persistent user histories."
+            "Search-context recommendations use the "
+            "current query without storing persistent "
+            "user histories."
+        )
+
+        st.write(
+            "Similarity scores from different methods "
+            "should not be compared as equivalent "
+            "relevance measurements."
         )
