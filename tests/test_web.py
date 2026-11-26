@@ -57,15 +57,8 @@ class TestWebIntegration(unittest.TestCase):
 
     def submit_classification(self, text, algorithm):
         self.navigate("Classification")
-
-        self.select_option(
-            "Classification algorithm",
-            algorithm,
-        )
-
-        self.app.text_area[0].set_value(text)
-
-        self.click_button("Classify document")
+        dispatch(self.app, "classify_text", classificationText=text, classificationMethod=algorithm)
+        self.assert_no_exceptions()
 
     def submit_search(self, query):
         self.navigate("Search")
@@ -143,7 +136,7 @@ class TestWebIntegration(unittest.TestCase):
                 data = prototype_data(self.app)
                 self.assertEqual(data["page"], page)
                 self.assertIn(f'data-route="{page}" aria-current="page"', data["markup"])
-                if page in ("Overview", "Assistant", "Documents"):
+                if page in ("Overview", "Assistant", "Documents", "Classification"):
                     self.assertIn('<h1 id="page-title"', data["markup"])
                 else:
                     self.assertTrue(self.app.title)
@@ -271,7 +264,7 @@ class TestWebIntegration(unittest.TestCase):
     def test_empty_classification(self):
         self.submit_classification("", "nb")
 
-        self.assertTrue(self.app.warning)
+        self.assertEqual(prototype_data(self.app)["classification"]["notice"][0], "empty")
 
     def test_unknown_classification_vocabulary(self):
         self.submit_classification(
@@ -279,7 +272,7 @@ class TestWebIntegration(unittest.TestCase):
             "nb",
         )
 
-        self.assertTrue(self.app.warning)
+        self.assertEqual(prototype_data(self.app)["classification"]["notice"][0], "unknown")
 
     def test_search_baseline(self):
         self.submit_search(

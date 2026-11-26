@@ -230,6 +230,9 @@ export default function render({ parentElement, data, setTriggerValue }) {
   state.page = data.page;
   state.revision = data.revision;
   state.markup = data.markup;
+  const classificationSnapshot = state.classification?.snapshot();
+  state.classification?.stop();
+  state.classification = null;
   const archiveSnapshot = state.archive?.snapshot();
   state.archive?.stop();
   state.archive = null;
@@ -245,9 +248,14 @@ export default function render({ parentElement, data, setTriggerValue }) {
   const transportError = root.querySelector(".transport-error");
   const turns = root.querySelector(".turns");
 
-  function submitAction(action) {
+  function submitAction(action, onTimeout) {
     if (state.pending) return;
     if (action.kind === "navigate" && state.archive) action.query = state.archive.snapshot().text;
+    if (action.kind === "navigate" && state.classification) {
+      const draft = state.classification.snapshot();
+      action.classificationText = draft.text;
+      action.classificationMethod = draft.method;
+    }
     action.followLatest = !turns || turns.scrollHeight - turns.clientHeight - turns.scrollTop < 72;
     state.pending = action;
     if (field) fitComposer(field, send, true);
@@ -272,6 +280,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
         announcements.textContent = "The action could not be completed. Try again.";
       }
       if (field) fitComposer(field, send, false);
+      onTimeout?.();
     }, 15000);
     setTriggerValue("action", { ...action, revision: data.revision });
   }
@@ -405,11 +414,13 @@ export default function render({ parentElement, data, setTriggerValue }) {
   if (accepted && lastAction.kind === "library_origin") {
     focus(root.querySelector("#feature-in-documents"), true);
   }
-  if (accepted) announcements.textContent = lastAction.kind === "submit" && data.turns ? "Conversation updated." : `${data.page}.`;
+  state.classification = maintainClassification(root, state, data, submitAction, accepted ? lastAction : null, classificationSnapshot);
+  if (accepted && lastAction.kind !== "classify_text") announcements.textContent = lastAction.kind === "submit" && data.turns ? "Conversation updated." : `${data.page}.`;
   return () => unmount(root, state);
 }
 
 function unmount(root, state) {
+  state.classification?.stop();
   state.archive?.stop();
   clearTimeout(state.timer);
   state.closeResize?.();
