@@ -143,7 +143,7 @@ class TestWebIntegration(unittest.TestCase):
                 data = prototype_data(self.app)
                 self.assertEqual(data["page"], page)
                 self.assertIn(f'data-route="{page}" aria-current="page"', data["markup"])
-                if page in ("Overview", "Assistant"):
+                if page in ("Overview", "Assistant", "Documents"):
                     self.assertIn('<h1 id="page-title"', data["markup"])
                 else:
                     self.assertTrue(self.app.title)
@@ -156,82 +156,42 @@ class TestWebIntegration(unittest.TestCase):
 
     def test_document_library(self):
         self.navigate("Documents")
-
-        self.assertEqual(
-            len(self.app.expander),
-            9,
-        )
+        data = prototype_data(self.app)
+        self.assertEqual(len(data["archive"]["matchingIds"]), 9)
+        self.assertEqual(data["markup"].count("data-archive-group="), 3)
+        self.assertEqual(len(self.app.expander), 0)
 
     def test_document_category_filters(self):
         self.navigate("Documents")
-
-        expected_categories = {
-            "design_references": [
-                "UW01", "UW02", "UW03"
-            ],
-            "creative_methods": [
-                "UW04", "UW05", "UW06"
-            ],
-            "project_lessons": [
-                "UW07", "UW08", "UW09"
-            ],
+        expected = {
+            "design_references": ["UW01", "UW02", "UW03"],
+            "creative_methods": ["UW04", "UW05", "UW06"],
+            "project_lessons": ["UW07", "UW08", "UW09"],
         }
-
-        for category, identifiers in (
-            expected_categories.items()
-        ):
+        for category, identifiers in expected.items():
             with self.subTest(category=category):
-
-                self.app.selectbox(
-                    key="library_category"
-                ).set_value(category).run()
-
+                dispatch(self.app, "library_category", category=category)
                 self.assert_no_exceptions()
-
-                actual = [
-                    item.label.split()[0]
-                    for item in self.app.expander
-                ]
-
-                self.assertEqual(
-                    actual,
-                    identifiers,
-                )
+                data = prototype_data(self.app)
+                self.assertEqual(data["archive"]["matchingIds"], identifiers)
+                for identifier in identifiers:
+                    self.assertIn(f'data-archive-open="{identifier}"', data["markup"])
 
     def test_document_library_search(self):
         self.navigate("Documents")
-
-        self.app.text_input(
-            key="library_query"
-        ).set_value("UW04").run()
-
+        dispatch(self.app, "library_query", query="UW04")
         self.assert_no_exceptions()
-
-        self.assertEqual(
-            len(self.app.expander),
-            1,
-        )
-
-        self.assertIn(
-            "UW04",
-            self.app.expander[0].label,
-        )
+        data = prototype_data(self.app)
+        self.assertEqual(data["archive"]["matchingIds"], ["UW04"])
+        self.assertIn('data-archive-open="UW04"', data["markup"])
 
     def test_document_library_no_results(self):
         self.navigate("Documents")
-
-        self.app.text_input(
-            key="library_query"
-        ).set_value("xyzunknownterm123").run()
-
+        dispatch(self.app, "library_query", query="xyzunknownterm123")
         self.assert_no_exceptions()
-
-        self.assertEqual(
-            len(self.app.expander),
-            0,
-        )
-
-        self.assertTrue(self.app.info)
+        data = prototype_data(self.app)
+        self.assertEqual(data["archive"]["matchingIds"], [])
+        self.assertIn("No documents match the selected filters.", data["markup"])
 
     def test_naive_bayes_classification(self):
         self.submit_classification(

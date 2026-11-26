@@ -1,6 +1,5 @@
 """Streamlit adapter for the Canto abierto vertical prototype."""
 
-import base64
 import json
 from html import escape
 from pathlib import Path
@@ -10,6 +9,9 @@ import streamlit as st
 
 from src.web.chatbot_view import EXAMPLE_QUESTIONS, HISTORY_KEY, PAGES, REVISION_KEY, handle_action
 from src.web.document_views import category_label
+from src.web.documents_archive import (
+    document_payload, handle_library_action, remember_library_query, render_archive,
+)
 
 
 ASSETS = Path(__file__).with_name("prototype_assets")
@@ -23,6 +25,7 @@ SYMBOLS = {
     "Assistant": '<path d="M3 5h18v11H10l-5 4v-4H3z"/>',
     "Knowledge Graph": '<path d="m12 3 9 5v9l-9 4-9-4V8zm-9 5 9 4 9-4m-9 4v9"/>',
     "next": '<path d="M4 12h15m-6-6 6 6-6 6"/>',
+    "download": '<path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/>',
     "back": '<path d="M20 12H5m6-6-6 6 6 6"/>',
     "menu": '<path d="M3 5h18M3 12h18M3 19h18"/>',
     "brand": '<path class="optical-stroke" d="M5 9h7l4-4h8"/><path d="M3 13h8l4-4h7M1 17h9l4-4h6"/>',
@@ -46,8 +49,8 @@ def _read(name):
 _COMPONENT = st.components.v2.component(
     "umbral_prototype",
     html='<div id="umbral-root"></div>',
-    css=_color_css() + _read("prototype.css"),
-    js=_read("prototype.js"),
+    css=_color_css() + _read("prototype.css") + "\n" + _read("archive.css"),
+    js=_read("archive.js") + "\n" + _read("prototype.js"),
 )
 
 
@@ -176,6 +179,7 @@ def _overview(documents, feature):
                     <div class="actions">
                         <button type="button" class="text-action" id="feature-original" data-feature-original>Read original{symbol("next")}</button>
                         <button type="button" class="text-action" data-hide-feature>Hide details</button>
+                        <button type="button" class="text-action" id="feature-in-documents" data-open-in-documents="{escape(feature['id'])}">Open in Documents{symbol("next")}</button>
                     </div>
                 </div>
             </section>
@@ -256,23 +260,6 @@ def _turn(index, user, turn):
             f'<span class="role assistant-role">{symbol("brand")}Assistant</span>{answer}</article>')
 
 
-def _document_payload(document):
-    try:
-        raw = document.path.read_bytes()
-    except OSError:
-        raw = b""
-    original = raw.decode("utf-8-sig", errors="replace")
-    metadata = {}
-    for line in original.splitlines()[:5]:
-        name, _, value = line.partition(":")
-        metadata[name] = value.strip()
-    return {
-        "id": document.doc_id, "title": document.title, "category": category_label(document.category),
-        "type": metadata.get("Type", ""), "department": metadata.get("Responsible department", ""),
-        "original": original, "bytes": base64.b64encode(raw).decode("ascii"), "file": document.path.name,
-    }
-
-
 def _assistant_sources(documents, history):
     evidence = {}
     available_ids = set()
@@ -287,7 +274,7 @@ def _assistant_sources(documents, history):
                 "similarity": f"{source.similarity:.6f}", "fragments": fragments,
             }
             available_ids.add(source.document_id)
-    return {doc.doc_id: _document_payload(doc) for doc in documents if doc.doc_id in available_ids}, evidence
+    return {doc.doc_id: document_payload(doc) for doc in documents if doc.doc_id in available_ids}, evidence
 
 
 def render_prototype(retrieval, chatbot):
@@ -297,19 +284,25 @@ def render_prototype(retrieval, chatbot):
     state.setdefault(HISTORY_KEY, [])
 
     def on_action():
-        handle_action(state, state[COMPONENT_KEY].action, chatbot)
+        action = state[COMPONENT_KEY].action
+        if not handle_library_action(state, action, retrieval.documents):
+            remember_library_query(state, action, retrieval.documents)
+            handle_action(state, action, chatbot)
 
     page = state["navigation"]
     history = state[HISTORY_KEY]
     evidence = {}
     documents = {}
+    archive = None
     if page == "Overview":
         feature = next(doc for doc in retrieval.documents if doc.doc_id == "UW04")
-        documents[feature.doc_id] = _document_payload(feature)
+        documents[feature.doc_id] = document_payload(feature)
         content = _overview(retrieval.documents, documents[feature.doc_id])
     elif page == "Assistant":
         documents, evidence = _assistant_sources(retrieval.documents, history)
         content = _assistant(history)
+    elif page == "Documents":
+        content, archive = render_archive(state, retrieval.documents, _badge, symbol)
     else:
         content = ""
     crumb = f'<p class="crumb">Knowledge Hub <span>/</span> <strong>{page}</strong></p>'
@@ -320,6 +313,6 @@ def render_prototype(retrieval, chatbot):
         _COMPONENT(
             key=COMPONENT_KEY, on_action_change=on_action,
             data={"page": page, "markup": markup, "revision": state[REVISION_KEY], "documents": documents,
-                  "evidence": evidence, "suggestions": EXAMPLE_QUESTIONS, "turns": len(history) // 2},
+                  "evidence": evidence, "archive": archive, "suggestions": EXAMPLE_QUESTIONS, "turns": len(history) // 2},
         )
     return page

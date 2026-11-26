@@ -230,6 +230,9 @@ export default function render({ parentElement, data, setTriggerValue }) {
   state.page = data.page;
   state.revision = data.revision;
   state.markup = data.markup;
+  const archiveSnapshot = state.archive?.snapshot();
+  state.archive?.stop();
+  state.archive = null;
   root.innerHTML = data.markup;
 
   const field = root.querySelector("#question");
@@ -244,6 +247,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
 
   function submitAction(action) {
     if (state.pending) return;
+    if (action.kind === "navigate" && state.archive) action.query = state.archive.snapshot().text;
     action.followLatest = !turns || turns.scrollHeight - turns.clientHeight - turns.scrollTop < 72;
     state.pending = action;
     if (field) fitComposer(field, send, true);
@@ -340,10 +344,10 @@ export default function render({ parentElement, data, setTriggerValue }) {
     else if ("closeMenu" in command) closeMenu(true);
     else if ("route" in command) {
       if (drawer.open) closeMenu(false);
-      if (command.route === data.page) focus(root.querySelector("#page-title"));
+      if (command.route === data.page) focus(root.querySelector("#archive-reader-title") || root.querySelector("#page-title"));
       else submitAction({ kind: "navigate", page: command.route });
     } else if ("skip" in command) {
-      const main = root.querySelector("#page-title") || document.querySelector(".st-key-umbral-native h1");
+      const main = root.querySelector("#archive-reader-title") || root.querySelector("#page-title") || document.querySelector(".st-key-umbral-native h1");
       main?.setAttribute("tabindex", "-1");
       focus(main, true);
     } else if ("confirm" in command) {
@@ -358,6 +362,9 @@ export default function render({ parentElement, data, setTriggerValue }) {
     } else if ("feature" in command) showFeature(root, state, !state.feature);
     else if ("hideFeature" in command) showFeature(root, state, false, true);
     else if ("featureOriginal" in command) openReader(root, state, data, target, "UW04");
+    else if ("openInDocuments" in command) {
+      submitAction({ kind: "open_document", id: command.openInDocuments });
+    }
     else if ("source" in command) {
       if (state.reader?.trigger === target.id) backFromReader(root, state, data);
       else openReader(root, state, data, target, command.source);
@@ -389,11 +396,21 @@ export default function render({ parentElement, data, setTriggerValue }) {
   showFeature(root, state, state.feature);
   renderReader(root, state, data, false);
   readyFocus(root, state, data, previousPage, accepted ? lastAction : null, oldScroll);
+  state.archive = maintainArchive(root, state, data, submitAction, accepted ? lastAction : null, archiveSnapshot);
+  const queued = state.archiveQueued;
+  state.archiveQueued = null;
+  if (queued && state.archive) queueMicrotask(() => {
+    if (state.revision === data.revision && !state.pending) submitAction(queued);
+  });
+  if (accepted && lastAction.kind === "library_origin") {
+    focus(root.querySelector("#feature-in-documents"), true);
+  }
   if (accepted) announcements.textContent = lastAction.kind === "submit" && data.turns ? "Conversation updated." : `${data.page}.`;
   return () => unmount(root, state);
 }
 
 function unmount(root, state) {
+  state.archive?.stop();
   clearTimeout(state.timer);
   state.closeResize?.();
   state.cleanup();

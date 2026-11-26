@@ -5,7 +5,7 @@ import streamlit as st
 from src.chatbot import DocumentChatbot
 from src.recommender import RecommendationEngine
 from src.retrieval import RetrievalEngine
-from src.web.document_views import render_classification, render_documents, render_search
+from src.web.document_views import render_classification, render_search
 from src.web.prototype_ui import render_prototype
 from src.web.recommendation_view import render_recommendations
 
@@ -31,9 +31,7 @@ def main():
     page = render_prototype(retrieval, chatbot)
 
     with st.container(key="umbral-native"):
-        if page == "Documents":
-            render_documents(retrieval)
-        elif page == "Classification":
+        if page == "Classification":
             render_classification()
         elif page == "Search":
             render_search(retrieval)
