@@ -1,5 +1,7 @@
 """UMBRAL WEB entry point and shared knowledge engines."""
 
+from pathlib import Path
+
 import streamlit as st
 
 from src.chatbot import DocumentChatbot
@@ -8,7 +10,11 @@ from src.retrieval import RetrievalEngine
 from src.web.prototype_ui import render_prototype
 
 
-st.set_page_config(page_title="Umbral Web | Knowledge Hub", layout="wide")
+st.set_page_config(
+    page_title="Umbral Web | Knowledge Hub",
+    page_icon=Path(__file__).resolve().parent / "static" / "brand" / "umbral-favicon.svg",
+    layout="wide",
+)
 
 
 @st.cache_resource

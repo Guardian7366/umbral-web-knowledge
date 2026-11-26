@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <title>UMBRAL</title>
+  <rect x="1" y="1" width="30" height="30" rx="6" fill="#082754"/>
+  <g transform="translate(4 5)" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="#68E8F2" d="M5 9h7l4-4h8"/>
+    <path stroke="#FFFFFF" d="M3 13h8l4-4h7M1 17h9l4-4h6"/>
+  </g>
+</svg>
