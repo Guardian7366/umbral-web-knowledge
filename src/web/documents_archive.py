@@ -181,13 +181,15 @@ def _divider(category, group, records, selected, symbol):
             f' aria-labelledby="archive-group-{category}"{hidden}>{"".join(sheets)}</ul></div>')
 
 
-def _reader(doc, badge, symbol):
+def render_original_reader(doc, badge, symbol, *, actions="data-archive-action",
+                           back="library_back", retry="library_retry", back_label="Back to index", trailing=""):
+    """Render one original with the route's return and retry actions."""
     available = doc["available"]
     content = (
         f'<pre class="archive-original" tabindex="0" aria-label="Original document">{escape(doc["original"])}</pre>'
         if available else
         '<div role="alert" class="archive-error"><p>The original document is currently unavailable.</p>'
-        '<button type="button" class="text-action" data-archive-action="library_retry">Retry</button></div>'
+        f'<button type="button" class="text-action" {actions}="{retry}">Retry</button></div>'
     )
     download = (
         f'<a class="secondary archive-download" href="data:text/plain;base64,{doc["bytes"]}"'
@@ -198,13 +200,14 @@ def _reader(doc, badge, symbol):
         <article class="archive-reader" aria-labelledby="archive-reader-title" data-document-id="{escape(doc['id'])}">
             <div class="archive-reader-top">
                 <div class="archive-reader-badge">{badge(doc['id'])}<span>{escape(doc['category'])}</span></div>
-                <button type="button" class="text-action archive-back" data-archive-action="library_back">
-                    {symbol('back')}Back to index
+                <button type="button" class="text-action archive-back" {actions}="{back}">
+                    {symbol('back')}{back_label}
                 </button>
             </div>
             <h2 id="archive-reader-title" tabindex="-1">{escape(doc['title'])}</h2>
             <div class="archive-reader-actions"><strong>Original document</strong>{download}</div>
             {content}
+            {trailing}
         </article>
     """
 
@@ -277,7 +280,7 @@ def render_archive(state, documents, badge, symbol):
                     {tray}
                     <p class="archive-match-count" role="status">{count}</p>
                 </section>
-                {_reader(document_payload(original), badge, symbol) if original else ""}
+                {render_original_reader(document_payload(original), badge, symbol) if original else ""}
             </div>
         </div>
     """

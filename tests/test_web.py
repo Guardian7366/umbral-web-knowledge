@@ -36,25 +36,6 @@ class TestWebIntegration(unittest.TestCase):
 
         self.assert_no_exceptions()
 
-    def click_button(self, label):
-        button = next(
-            button
-            for button in self.app.button
-            if button.label == label
-        )
-
-        button.click().run()
-        self.assert_no_exceptions()
-
-    def select_option(self, label, value):
-        widget = next(
-            widget
-            for widget in self.app.selectbox
-            if widget.label == label
-        )
-
-        widget.set_value(value)
-
     def submit_classification(self, text, algorithm):
         self.navigate("Classification")
         dispatch(self.app, "classify_text", classificationText=text, classificationMethod=algorithm)
@@ -63,50 +44,23 @@ class TestWebIntegration(unittest.TestCase):
     def submit_search(self, query):
         self.navigate("Search")
 
-        self.app.text_input[0].set_value(query)
-
-        self.click_button("Search documents")
-
-    def submit_document_recommendation(
-        self,
-        document_id,
-        threshold=0.0,
-    ):
-        self.navigate("Recommendations")
-
-        self.app.radio(
-            key="recommendation_mode"
-        ).set_value("By document").run()
-
+        dispatch(self.app, "tool_submit", toolDraft={"query": query, "limit": 3})
         self.assert_no_exceptions()
 
-        self.select_option(
-            "Select a source document",
-            document_id,
-        )
-
-        slider = next(
-            slider
-            for slider in self.app.slider
-            if slider.label == "Minimum cosine similarity"
-        )
-
-        slider.set_value(threshold)
-
-        self.click_button("Get recommendations")
+    def submit_document_recommendation(self, document_id, threshold=0.0):
+        self.submit_recommendation("document", document_id, "", threshold)
 
     def submit_query_recommendation(self, query):
+        self.submit_recommendation("query", "UW01", query, 0.0)
+
+    def submit_recommendation(self, mode, document_id, query, threshold):
         self.navigate("Recommendations")
-
-        self.app.radio(
-            key="recommendation_mode"
-        ).set_value("By search query").run()
-
+        dispatch(self.app, "tool_submit", toolDraft={
+            "mode": mode, "method": "lexical", "source": document_id, "query": query,
+            "limits": {"document": 3, "query": 3},
+            "thresholds": {"lexical": threshold, "semantic": 0.55},
+        })
         self.assert_no_exceptions()
-
-        self.app.text_input[0].set_value(query)
-
-        self.click_button("Get recommendations")
 
     def submit_question(self, question):
         dispatch(self.app, "submit", text=question)
@@ -136,7 +90,7 @@ class TestWebIntegration(unittest.TestCase):
                 data = prototype_data(self.app)
                 self.assertEqual(data["page"], page)
                 self.assertIn(f'data-route="{page}" aria-current="page"', data["markup"])
-                if page in ("Overview", "Assistant", "Documents", "Classification"):
+                if page in ("Overview", "Assistant", "Documents", "Classification", "Search", "Recommendations"):
                     self.assertIn('<h1 id="page-title"', data["markup"])
                 else:
                     self.assertTrue(self.app.title)
@@ -303,7 +257,7 @@ class TestWebIntegration(unittest.TestCase):
     def test_empty_search(self):
         self.submit_search("")
 
-        self.assertTrue(self.app.warning)
+        self.assertIn('data-status="empty"', prototype_data(self.app)["markup"])
 
     def test_unknown_search(self):
         self.submit_search(
@@ -386,7 +340,7 @@ class TestWebIntegration(unittest.TestCase):
     def test_empty_recommendation_query(self):
         self.submit_query_recommendation("")
 
-        self.assertTrue(self.app.warning)
+        self.assertIn('data-status="empty"', prototype_data(self.app)["markup"])
 
     def test_unknown_recommendation_query(self):
         self.submit_query_recommendation(

@@ -10,6 +10,8 @@ import streamlit as st
 from src.web.chatbot_view import EXAMPLE_QUESTIONS, HISTORY_KEY, PAGES, REVISION_KEY, handle_action
 from src.web.classification_view import handle_classification_action, render_classification
 from src.web.document_views import category_label
+from src.web.recommendation_view import handle_recommendations_action, render_recommendations
+from src.web.search_view import handle_search_action, render_search
 from src.web.documents_archive import (
     document_payload, handle_library_action, remember_library_query, render_archive,
 )
@@ -50,8 +52,8 @@ def _read(name):
 _COMPONENT = st.components.v2.component(
     "umbral_prototype",
     html='<div id="umbral-root"></div>',
-    css=_color_css() + _read("prototype.css") + "\n" + _read("archive.css") + "\n" + _read("classification.css"),
-    js=_read("classification.js") + "\n" + _read("archive.js") + "\n" + _read("prototype.js"),
+    css=_color_css() + _read("prototype.css") + "\n" + _read("archive.css") + "\n" + _read("classification.css") + "\n" + _read("tools.css") + "\n" + _read("recommendations.css"),
+    js=_read("tools.js") + "\n" + _read("classification.js") + "\n" + _read("archive.js") + "\n" + _read("prototype.js"),
 )
 
 
@@ -278,7 +280,7 @@ def _assistant_sources(documents, history):
     return {doc.doc_id: document_payload(doc) for doc in documents if doc.doc_id in available_ids}, evidence
 
 
-def render_prototype(retrieval, chatbot):
+def render_prototype(retrieval, recommender, chatbot):
     state = st.session_state
     state.setdefault("navigation", "Overview")
     state.setdefault(REVISION_KEY, uuid4().hex)
@@ -286,6 +288,16 @@ def render_prototype(retrieval, chatbot):
 
     def on_action():
         action = state[COMPONENT_KEY].action
+        if isinstance(action, dict) and state["navigation"] in ("Search", "Recommendations"):
+            kind = action.get("kind")
+            if kind in ("navigate", "tool_submit", "tool_open", "tool_back", "tool_retry_file", "tool_inspect"):
+                if action.get("revision") == state[REVISION_KEY]:
+                    if state["navigation"] == "Search":
+                        handle_search_action(state, action, retrieval)
+                    else:
+                        handle_recommendations_action(state, action, recommender)
+                if kind != "navigate":
+                    return
         if handle_classification_action(state, action):
             return
         if not handle_library_action(state, action, retrieval.documents):
@@ -298,6 +310,7 @@ def render_prototype(retrieval, chatbot):
     documents = {}
     archive = None
     classification = None
+    tools = None
     if page == "Overview":
         feature = next(doc for doc in retrieval.documents if doc.doc_id == "UW04")
         documents[feature.doc_id] = document_payload(feature)
@@ -309,6 +322,10 @@ def render_prototype(retrieval, chatbot):
         content, archive = render_archive(state, retrieval.documents, _badge, symbol)
     elif page == "Classification":
         content, classification = render_classification(state)
+    elif page == "Search":
+        content, tools = render_search(state, retrieval, _badge, symbol)
+    elif page == "Recommendations":
+        content, tools = render_recommendations(state, recommender, _badge, symbol)
     else:
         content = ""
     crumb = f'<p class="crumb">Knowledge Hub <span>/</span> <strong>{page}</strong></p>'
@@ -319,6 +336,6 @@ def render_prototype(retrieval, chatbot):
         _COMPONENT(
             key=COMPONENT_KEY, on_action_change=on_action,
             data={"page": page, "markup": markup, "revision": state[REVISION_KEY], "documents": documents,
-                  "evidence": evidence, "archive": archive, "classification": classification, "suggestions": EXAMPLE_QUESTIONS, "turns": len(history) // 2},
+                  "evidence": evidence, "archive": archive, "classification": classification, "tools": tools, "suggestions": EXAMPLE_QUESTIONS, "turns": len(history) // 2},
         )
     return page

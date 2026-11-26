@@ -230,6 +230,10 @@ export default function render({ parentElement, data, setTriggerValue }) {
   state.page = data.page;
   state.revision = data.revision;
   state.markup = data.markup;
+  const toolsSnapshot = state.tools?.snapshot();
+  state.tools?.stop();
+  state.tools = null;
+  if (previousPage !== data.page) state.toolReturnScroll = null;
   const classificationSnapshot = state.classification?.snapshot();
   state.classification?.stop();
   state.classification = null;
@@ -250,6 +254,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
 
   function submitAction(action, onTimeout) {
     if (state.pending) return;
+    if (action.kind === "navigate" && state.tools) action.toolDraft = state.tools.draft();
     if (action.kind === "navigate" && state.archive) action.query = state.archive.snapshot().text;
     if (action.kind === "navigate" && state.classification) {
       const draft = state.classification.snapshot();
@@ -281,7 +286,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
       }
       if (field) fitComposer(field, send, false);
       onTimeout?.();
-    }, 15000);
+    }, action.kind === "tool_submit" ? 120000 : 15000);
     setTriggerValue("action", { ...action, revision: data.revision });
   }
 
@@ -415,11 +420,13 @@ export default function render({ parentElement, data, setTriggerValue }) {
     focus(root.querySelector("#feature-in-documents"), true);
   }
   state.classification = maintainClassification(root, state, data, submitAction, accepted ? lastAction : null, classificationSnapshot);
-  if (accepted && lastAction.kind !== "classify_text") announcements.textContent = lastAction.kind === "submit" && data.turns ? "Conversation updated." : `${data.page}.`;
+  state.tools = maintainTools(root, state, data, submitAction, accepted ? lastAction : null, toolsSnapshot);
+  if (accepted && lastAction.kind !== "classify_text" && !lastAction.kind.startsWith("tool_")) announcements.textContent = lastAction.kind === "submit" && data.turns ? "Conversation updated." : `${data.page}.`;
   return () => unmount(root, state);
 }
 
 function unmount(root, state) {
+  state.tools?.stop();
   state.classification?.stop();
   state.archive?.stop();
   clearTimeout(state.timer);
