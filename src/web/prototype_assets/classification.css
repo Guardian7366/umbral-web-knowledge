@@ -1,0 +1,91 @@
+.page-classification { background: var(--ice); min-height: 100dvh; }
+.classification-workspace { container: classifier / inline-size; color: var(--ink); }
+.classification-heading { padding-top: 18px; color: var(--active); }
+.classification-heading h1 { font-size: 48px; letter-spacing: -.02em; }
+.classification-heading p { margin-top: 18px; color: var(--muted); font-size: 20px; }
+.classification-mobile-title { display: none; }
+.classification-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); margin-top: 36px; position: relative; isolation: isolate; }
+.classification-layout::before {
+  content: ""; position: absolute; inset: 2px 0 -24px; z-index: -2;
+  background: var(--active);
+  clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% calc(100% - 23px), calc(100% - 23px) 100%, 0 100%);
+}
+.classification-sheet, .classification-result { position: relative; isolation: isolate; min-width: 0; }
+.classification-sheet { padding: 28px 28px 34px; min-height: 590px; }
+.classification-sheet::before, .classification-sheet::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 21px), calc(100% - 21px) 100%, 0 100%);
+  background: var(--surface);
+}
+.classification-sheet::after { z-index: -2; transform: translate(7px,8px); background: color-mix(in srgb, var(--source) 74%, var(--controlBorder)); }
+.classification-sheet > label { display: block; color: var(--active); font: 740 28px/1.2 var(--heading); }
+#classification-helper, #classification-method-help { color: var(--muted); margin-top: 12px; }
+#classification-text {
+  display: block; margin-top: 24px; padding: 17px; width: 100%; min-height: 190px;
+  border: 1px solid var(--controlBorder); border-radius: 0; background: var(--surface);
+  color: var(--ink); font: 400 23px/1.44 var(--body); resize: vertical;
+}
+.classification-sheet fieldset { min-width: 0; margin: 28px 0 0; border: 0; padding: 0; }
+.classification-sheet legend { font-weight: 700; padding: 0; margin-bottom: 10px; }
+.classification-options { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); }
+.classification-options label { display: grid; position: relative; }
+.classification-options input { position: absolute; margin: 0; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+.classification-options span {
+  display: grid; place-items: center; min-height: 46px; padding: 6px;
+  border: 1px solid var(--controlBorder); background: var(--surface);
+  font-weight: 600; text-align: center; overflow-wrap: anywhere;
+}
+.classification-options input:checked + span { background: var(--active); color: white; box-shadow: inset 0 -4px var(--optical); }
+.classification-options input:focus-visible + span { outline: 2px solid var(--focusLight); outline-offset: 2px; z-index: 1; }
+.classification-submit { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 36px; }
+.classification-submit button { min-width: 174px; }
+#classification-message { margin-top: 12px; padding: 9px 12px; border-inline-start: 3px solid currentColor; background: var(--warningFill); color: var(--warningText); }
+#classification-message[data-state="error"] { background: var(--errorFill); color: var(--errorText); }
+.classification-result { padding: 46px 45px 22px 50px; color: white; }
+.classification-result::before {
+  content:""; position:absolute; inset: 12px 11px -13px -8px; z-index:-1; background:var(--navigation);
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 15px), calc(100% - 16px) 100%, 0 100%);
+}
+.classification-tab-label, .classification-await { font-weight: 600; font-size: 18px; }
+.classification-cant {
+  display: block; height: 24px; margin-top: 5px; background: var(--optical);
+  clip-path: polygon(0 calc(100% - 3px), 17% calc(100% - 3px), 23% 0, 100% 0, 100% 3px, 23% 3px, 17% 100%, 0 100%);
+}
+.classification-tab h2 { margin-top: 27px; max-width: 10ch; font-size: clamp(34px, 5cqi, 55px); line-height: 1.08; overflow-wrap: anywhere; }
+.classification-description { margin-top: 42px; font-size: 22px; line-height: 1.28; }
+.classification-tab-holder:has(.classification-tab:not([hidden])) + .classification-await { display: none; }
+.classification-details { border-top: 1px solid #ffffff78; margin-top: 38px; }
+.classification-details summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding-block: 8px; color: inherit; font-weight: 700; }
+.classification-details summary::after { content: ""; width: 8px; height: 8px; border: solid currentColor; border-width: 0 2px 2px 0; transform: rotate(45deg); margin-right: 6px; }
+.classification-details[open] summary::after { transform: rotate(225deg); }
+.classification-details summary:focus-visible { outline-color: white; }
+.classification-details p { margin-block: 4px; font-size: 16px; }
+.classification-details strong { display:block; margin: 4px 0 8px; font-size: 20px; }
+.classification-tab[data-category="project_lessons"] .classification-cant { clip-path: polygon(0 22px, 31% 22px, 38% 0, 100% 0, 100% 3px, 38% 3px, 31% 100%, 0 100%); }
+.classification-tab[data-category="design_references"] .classification-cant { clip-path: polygon(0 22px, 11% 22px, 18% 0, 100% 0, 100% 3px, 18% 3px, 11% 100%, 0 100%); }
+@container classifier (max-width: 939px) {
+  .classification-layout { grid-template-columns: minmax(0,1fr); margin-top: 22px; gap: 24px; }
+  .classification-layout::before, .classification-sheet::before, .classification-sheet::after { display:none; }
+  .classification-sheet { min-height: 0; padding: 0; }
+  .classification-heading .classification-desktop-title { display: none; }
+  .classification-heading .classification-mobile-title { display: block; font-size: 32px; }
+  .classification-heading p, #classification-helper { display: none; }
+  .classification-sheet > label { font: 700 16px/1.3 var(--body); }
+  #classification-text { margin-top: 10px; min-height: 134px; height: 134px; padding: 12px; font-size: 18px; }
+  .classification-sheet fieldset { margin-top: 17px; }
+  #classification-method-help { margin-top: 10px; }
+  .classification-submit { margin-top: 22px; }
+  .classification-submit .primary { width: 100%; }
+  .classification-result { padding: 20px 18px 8px; }
+  .classification-result::before { inset: 0; clip-path: polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%); }
+  .classification-result:has(.classification-tab:not([hidden])) { margin-top: 23px; }
+  .classification-tab-label { position: absolute; top: -25px; inset-inline-start: 18px; padding: 1px 24px; font-size: 16px; }
+  .classification-tab-label::before { content:""; position:absolute; inset:0; z-index:-1; background:var(--navigation); clip-path: polygon(0 100%,18px 0,calc(100% - 18px) 0,100% 100%); }
+  .classification-cant { position: absolute; width: 150px; max-width:80%; height:3px; inset: 0 auto auto 18px; margin:0; clip-path:none !important; }
+  .classification-tab h2 { max-width: none; font-size: 29px; margin-top: 6px; }
+  .classification-description { margin-top: 14px; font-size: 18px; }
+  .classification-details { margin-top: 14px; }
+}
+@container classifier (max-width: 280px) {
+  .classification-options { grid-template-columns: minmax(0,1fr); }
+}

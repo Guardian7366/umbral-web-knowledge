@@ -1,42 +1,58 @@
-from sklearn.metrics.pairwise import cosine_similarity
-from os.path import basename
-import numpy as np
+"""Command-line interface for document retrieval."""
+
 import re
 
-from classifier import (
-    load_documents,
-    build_vectorizer,
-)
+if __package__:
+    from .retrieval import RetrievalEngine
+else:
+    from retrieval import RetrievalEngine
+
 
 def main() -> None:
-    # Load documents and build the vectorizer for similarity search
-    documents = load_documents()
-    vectorizer = build_vectorizer()
-    X =  vectorizer.fit_transform([d.text for d in documents]) 
+    engine = RetrievalEngine()
 
     while True:
         print("=" * 50)
-        query = input("Enter your query: ")
+
+        try:
+            query = input("Enter your query: ")
+        except (KeyboardInterrupt, EOFError):
+            print("\nSearch session ended.")
+            break
+
         print("=" * 50)
         print()
-        if not query:
+
+        if not query.strip():
             break
-        # Transform the query into the same vector space as the documents
-        query_vec = vectorizer.transform([query])
-        similarities = cosine_similarity(query_vec, X)
 
-        # Display Top 3 most similar documents where similarity is greater than zero
-        top_indices = [i for i in np.argsort(similarities[0])[::-1][:3] if similarities[0][i] > 0]
-        for idx in top_indices:
-            print(f"Similarity: {similarities[0][idx]} - Document: {basename(documents[idx].path)}")
+        results = engine.search(query)
 
-            # Display the content of the document with query colored
-            doc_text = documents[idx].text
+        if not results:
+            print("No relevant documents found.")
+            print()
+            continue
+
+        for result in results:
+            print(
+                f"Similarity: {result.similarity} - "
+                f"Document: {result.document.path.name}"
+            )
+
+            doc_text = result.document.text
+
             for word in query.split():
-                doc_text = re.sub(rf'\b{re.escape(word)}\b', f"\033[91m{word}\033[0m", doc_text)
+                doc_text = re.sub(
+                    rf"\b{re.escape(word)}\b",
+                    f"\033[91m{word}\033[0m",
+                    doc_text,
+                )
+
             print(doc_text)
             print()
+
         print()
+
 
 if __name__ == "__main__":
     main()

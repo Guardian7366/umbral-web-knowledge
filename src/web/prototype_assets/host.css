@@ -1,0 +1,30 @@
+/* Streamlit's global font faces are inherited by the isolated v2 component. */
+@font-face {
+  font-family: Archivo;
+  src: url("./app/static/fonts/Archivo.ttf") format("truetype");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("./app/static/fonts/SourceSans3.ttf") format("truetype");
+  font-weight: 200 900;
+  font-display: swap;
+}
+/* Streamlit has no full-bleed application frame setting. Scope the two host
+   selectors to this app. Recheck them when upgrading the pinned Streamlit. */
+.stApp:has(.st-key-umbral-frame) .stAppHeader { display: none; }
+.stMainBlockContainer:has(.st-key-umbral-frame) { max-width: none; padding: 0; }
+.st-key-umbral-native {
+  box-sizing: border-box;
+  width: auto !important;
+  margin: 0 40px 32px 280px;
+}
+.st-key-umbral-native:not(:has(h1)) { display: none; }
+@media (max-width: 1199px) {
+  .st-key-umbral-native { margin-inline: 232px 24px; }
+}
+@media (max-width: 959px) {
+  .st-key-umbral-native { margin-inline: 16px; }
+}

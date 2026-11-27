@@ -1,0 +1,364 @@
+{
+  "schemaVersion": "0.1.0",
+  "source": {
+    "commit": "28eee545412951218dd8c7de4392494fcacb0d09",
+    "path": "src/graph.py",
+    "blob": "6e9c929f48c521d9f515135b7d10e8bc9d238ce9"
+  },
+  "counts": {
+    "nodes": 27,
+    "edges": 15
+  },
+  "nodes": [
+    {
+      "id": "node:179205e3be4f7f365a5d51b1ea301312aafb0cd9d05211f5ee63a29e17d6b765",
+      "originalKey": "Interface Development",
+      "family": "Department",
+      "label": "Interface Development",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:fc0857c45bc6bf8f0f78783ee59758a5d720847f7e4590f785a15075adb3595f",
+      "originalKey": "Design and UX",
+      "family": "Department",
+      "label": "Design and UX",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:0fe36fa6dc7a1c7458ef3bfb585fef07e04bac5b335dd565337d1546c2f31678",
+      "originalKey": "Creative Direction",
+      "family": "Department",
+      "label": "Creative Direction",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:e5e71e8b978fac71627d645a6035c3f8b7622f0f523556b0108f8318bfa9c3d6",
+      "originalKey": "Project Management",
+      "family": "Department",
+      "label": "Project Management",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:7fe0c87974fbf72f48d0bae587e3fd8da2c641d6cda1251aefebe75e5abcad7a",
+      "originalKey": "design_references",
+      "family": "Knowledge group",
+      "label": "Design references",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:7021932edbc3150bb2b625985a3d02ead005c8f0293a8d8cbcdbddad05aa6fdf",
+      "originalKey": "UW01",
+      "family": "Document",
+      "label": "UW01",
+      "documentId": "UW01",
+      "metadata": {
+        "catalogTitle": "Visual Hierarchy for Content-Heavy Pages",
+        "catalogCategory": "design_references"
+      }
+    },
+    {
+      "id": "node:e88f006923ae6ab418d4315c22c4a66b02ca695d5303b12c7fc545d5d86872dd",
+      "originalKey": "UW02",
+      "family": "Document",
+      "label": "UW02",
+      "documentId": "UW02",
+      "metadata": {
+        "catalogTitle": "Motion and Visual Feedback in an Interface",
+        "catalogCategory": "design_references"
+      }
+    },
+    {
+      "id": "node:3e7eeed8e0382d71ce8bc31c641a0bfbcd9636ad5b93ae68a7a9930343065f18",
+      "originalKey": "UW03",
+      "family": "Document",
+      "label": "UW03",
+      "documentId": "UW03",
+      "metadata": {
+        "catalogTitle": "Modular Composition for a Flexible Identity",
+        "catalogCategory": "design_references"
+      }
+    },
+    {
+      "id": "node:315e0f4b352517b4bc6f7538fd08fd24b8e23b9db68ab78f6d301804ea95f15f",
+      "originalKey": "creative_methods",
+      "family": "Knowledge group",
+      "label": "Creative methods",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:202a4013efe87fec4c24df5c023f381f3415b14786b1015d83bcdbde5b90af87",
+      "originalKey": "UW04",
+      "family": "Document",
+      "label": "UW04",
+      "documentId": "UW04",
+      "metadata": {
+        "catalogTitle": "Brief Idea Generation Session",
+        "catalogCategory": "creative_methods"
+      }
+    },
+    {
+      "id": "node:a9d85ce0bb2ff533974e2b868baf3ddc44468db802ac03a62d4c040892a2d984",
+      "originalKey": "UW05",
+      "family": "Document",
+      "label": "UW05",
+      "documentId": "UW05",
+      "metadata": {
+        "catalogTitle": "Short Test of a Visual Proposal",
+        "catalogCategory": "creative_methods"
+      }
+    },
+    {
+      "id": "node:19b6693dd576d7233a65c91476a651ba39d356c4de3bf79025d84101268fb5c4",
+      "originalKey": "UW06",
+      "family": "Document",
+      "label": "UW06",
+      "documentId": "UW06",
+      "metadata": {
+        "catalogTitle": "Concept Review Before Choosing a Direction",
+        "catalogCategory": "creative_methods"
+      }
+    },
+    {
+      "id": "node:cb4069ce32420e59d120b52b1a938aefd0e523ff156301c356c6e8831bbd928a",
+      "originalKey": "project_learnings",
+      "family": "Knowledge group",
+      "label": "Project learnings",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:b8e296571edfbeb718ef0963956d964edaf050c618d942d75d86a3fa826c2cce",
+      "originalKey": "UW07",
+      "family": "Document",
+      "label": "UW07",
+      "documentId": "UW07",
+      "metadata": {
+        "catalogTitle": "Project Closeout for the Aula Clara Course Catalog",
+        "catalogCategory": "project_lessons"
+      }
+    },
+    {
+      "id": "node:1f4acef5572bf69d51634fbf09b5f1bcfed31c85027d3b2f03db3779415e8fad",
+      "originalKey": "UW08",
+      "family": "Document",
+      "label": "UW08",
+      "documentId": "UW08",
+      "metadata": {
+        "catalogTitle": "Project Closeout for the Estudio Norte Portfolio",
+        "catalogCategory": "project_lessons"
+      }
+    },
+    {
+      "id": "node:445620577bbafa77ef9744d622e1353dc4da8c41e78373e090841cbf0cac0ee0",
+      "originalKey": "UW09",
+      "family": "Document",
+      "label": "UW09",
+      "documentId": "UW09",
+      "metadata": {
+        "catalogTitle": "Project Closeout for the Mesa Abierta Digital Menu",
+        "catalogCategory": "project_lessons"
+      }
+    },
+    {
+      "id": "node:ede06673e1ab789e9ff54abaf3dedf30693d5a69fa4adbf01094a7224ad7a6f1",
+      "originalKey": "Prototype",
+      "family": "Concept",
+      "label": "Prototype",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:75f6b57eb23f8c9dc0adac9314144806889957bb4365a1a8909284c48526a187",
+      "originalKey": "Reusable Components",
+      "family": "Concept",
+      "label": "Reusable Components",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:032aa17dc4065b0ab23849ab3e4f734589fe58de7fa7f1c939fe4c405d70e0da",
+      "originalKey": "Visual Hierarchy",
+      "family": "Concept",
+      "label": "Visual Hierarchy",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:75f5fd7266a0446b1fdc01c924e1644ddc13e1ecce5a1a5480218be36992a783",
+      "originalKey": "Responsiveness",
+      "family": "Concept",
+      "label": "Responsiveness",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:43c93247036633bab56279fb6095c05182f5b58a3dd1a9560161e41896f0a8cc",
+      "originalKey": "Module Composition",
+      "family": "Concept",
+      "label": "Module Composition",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:b735560bf494852b39e7949f643d4fdffd3d0e8456b1a709b788c62029132ef6",
+      "originalKey": "Ideation",
+      "family": "Concept",
+      "label": "Ideation",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:09e9e34b7474e967afebea3126e77100247555c034a577e251d3618598f666be",
+      "originalKey": "Visual Proposal Evaluation",
+      "family": "Concept",
+      "label": "Visual Proposal Evaluation",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:c8452d2589185ffa4a7e638f35f4501332aa5085ab1bdd8be334f02888479698",
+      "originalKey": "Concept Selection",
+      "family": "Concept",
+      "label": "Concept Selection",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:ee71c145bd9d3db65e2c28b6789c5fb3c5b12c81e96682107c0c34f949c7bb5f",
+      "originalKey": "Aula Clara Project",
+      "family": "Project example",
+      "label": "Aula Clara Project",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:bb67757529fd5e56b4867f6ee6a7fd0f389e51e0951bbda4d7e108c78291dfff",
+      "originalKey": "Estudio Norte Project",
+      "family": "Project example",
+      "label": "Estudio Norte Project",
+      "documentId": null,
+      "metadata": {}
+    },
+    {
+      "id": "node:5641d8feaf1448e3722358690b14ab2be73a120384e63ea425b875716c6b3357",
+      "originalKey": "Mesa Abierta Project",
+      "family": "Project example",
+      "label": "Mesa Abierta Project",
+      "documentId": null,
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:f5fbbc03d0358b9bba0bd2d1ec5409934d5e23bc2cb7244dd70d01a98d2c20a8",
+      "source": "node:fc0857c45bc6bf8f0f78783ee59758a5d720847f7e4590f785a15075adb3595f",
+      "target": "node:7fe0c87974fbf72f48d0bae587e3fd8da2c641d6cda1251aefebe75e5abcad7a",
+      "verb": "stores",
+      "directed": true
+    },
+    {
+      "id": "edge:8b36adc3fce140082ac184eb4429e6add99ac2ffc2985dcdfa25b649360e1561",
+      "source": "node:0fe36fa6dc7a1c7458ef3bfb585fef07e04bac5b335dd565337d1546c2f31678",
+      "target": "node:315e0f4b352517b4bc6f7538fd08fd24b8e23b9db68ab78f6d301804ea95f15f",
+      "verb": "stores",
+      "directed": true
+    },
+    {
+      "id": "edge:91493bbde30d8a80e34c1121b2ac9ce78014727a42f6d4159bf14d6f45da3899",
+      "source": "node:e5e71e8b978fac71627d645a6035c3f8b7622f0f523556b0108f8318bfa9c3d6",
+      "target": "node:cb4069ce32420e59d120b52b1a938aefd0e523ff156301c356c6e8831bbd928a",
+      "verb": "stores",
+      "directed": true
+    },
+    {
+      "id": "edge:75d270fb9f0513e30a499b955f36c42632c21e7322b2e873442b721c3bc30adf",
+      "source": "node:fc0857c45bc6bf8f0f78783ee59758a5d720847f7e4590f785a15075adb3595f",
+      "target": "node:ede06673e1ab789e9ff54abaf3dedf30693d5a69fa4adbf01094a7224ad7a6f1",
+      "verb": "creates",
+      "directed": true
+    },
+    {
+      "id": "edge:df6627babd346a4eda398e965cc4305e0648eadf27798b772d85d78552632146",
+      "source": "node:179205e3be4f7f365a5d51b1ea301312aafb0cd9d05211f5ee63a29e17d6b765",
+      "target": "node:75f6b57eb23f8c9dc0adac9314144806889957bb4365a1a8909284c48526a187",
+      "verb": "implements",
+      "directed": true
+    },
+    {
+      "id": "edge:6bdaf0810732a9b0abe75f08e02d9161da02c778eebf7106e413955059e6381d",
+      "source": "node:7021932edbc3150bb2b625985a3d02ead005c8f0293a8d8cbcdbddad05aa6fdf",
+      "target": "node:032aa17dc4065b0ab23849ab3e4f734589fe58de7fa7f1c939fe4c405d70e0da",
+      "verb": "describes",
+      "directed": true
+    },
+    {
+      "id": "edge:6a7adf2b068b23c2874ac51c406112157071007c2ed15ae1f9d9b6ddf21debde",
+      "source": "node:e88f006923ae6ab418d4315c22c4a66b02ca695d5303b12c7fc545d5d86872dd",
+      "target": "node:75f5fd7266a0446b1fdc01c924e1644ddc13e1ecce5a1a5480218be36992a783",
+      "verb": "describes",
+      "directed": true
+    },
+    {
+      "id": "edge:2d9c08c6c3f67f22e233653a1f241a89bdb21f7dd00b5064aa1175c4b6889116",
+      "source": "node:3e7eeed8e0382d71ce8bc31c641a0bfbcd9636ad5b93ae68a7a9930343065f18",
+      "target": "node:43c93247036633bab56279fb6095c05182f5b58a3dd1a9560161e41896f0a8cc",
+      "verb": "describes",
+      "directed": true
+    },
+    {
+      "id": "edge:0ceeb4c8a32cfdb478086ed77f41dbeb663c52e3f4427bee954b624122ddcce8",
+      "source": "node:ede06673e1ab789e9ff54abaf3dedf30693d5a69fa4adbf01094a7224ad7a6f1",
+      "target": "node:75f6b57eb23f8c9dc0adac9314144806889957bb4365a1a8909284c48526a187",
+      "verb": "generates",
+      "directed": true
+    },
+    {
+      "id": "edge:aaddf1268c1fdf364bc6e18a348ac7035bb386e5b6b562560e8ef5438842d949",
+      "source": "node:202a4013efe87fec4c24df5c023f381f3415b14786b1015d83bcdbde5b90af87",
+      "target": "node:b735560bf494852b39e7949f643d4fdffd3d0e8456b1a709b788c62029132ef6",
+      "verb": "documents_methods_for",
+      "directed": true
+    },
+    {
+      "id": "edge:75ed9b06b964fbf01cc416a148132c24f0a227d0919a470c2be4f990605e5869",
+      "source": "node:a9d85ce0bb2ff533974e2b868baf3ddc44468db802ac03a62d4c040892a2d984",
+      "target": "node:09e9e34b7474e967afebea3126e77100247555c034a577e251d3618598f666be",
+      "verb": "documents_methods_for",
+      "directed": true
+    },
+    {
+      "id": "edge:b4d767c1582b2a4fabb58917b3344e5753f0c46465441d405a583a3a548d9f98",
+      "source": "node:19b6693dd576d7233a65c91476a651ba39d356c4de3bf79025d84101268fb5c4",
+      "target": "node:c8452d2589185ffa4a7e638f35f4501332aa5085ab1bdd8be334f02888479698",
+      "verb": "documents_methods_for",
+      "directed": true
+    },
+    {
+      "id": "edge:fb41b85d6effa9113379a211221321018278baa05d696122698625441f6f5ab2",
+      "source": "node:b8e296571edfbeb718ef0963956d964edaf050c618d942d75d86a3fa826c2cce",
+      "target": "node:ee71c145bd9d3db65e2c28b6789c5fb3c5b12c81e96682107c0c34f949c7bb5f",
+      "verb": "documents_closure_of",
+      "directed": true
+    },
+    {
+      "id": "edge:ed72f7311e5937e74d6c916023073452505cf2363086281565151e47c6481b43",
+      "source": "node:1f4acef5572bf69d51634fbf09b5f1bcfed31c85027d3b2f03db3779415e8fad",
+      "target": "node:bb67757529fd5e56b4867f6ee6a7fd0f389e51e0951bbda4d7e108c78291dfff",
+      "verb": "documents_closure_of",
+      "directed": true
+    },
+    {
+      "id": "edge:8636e329624183ccf0532563aca02986fa3aa000502d0542496fb447c294edc0",
+      "source": "node:445620577bbafa77ef9744d622e1353dc4da8c41e78373e090841cbf0cac0ee0",
+      "target": "node:5641d8feaf1448e3722358690b14ab2be73a120384e63ea425b875716c6b3357",
+      "verb": "documents_closure_of",
+      "directed": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "umbral-knowledge-graph",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild viewer.js --bundle --minify --format=esm --outfile=../../static/graph/explorer.js && esbuild scene.js --bundle --minify --format=esm --outfile=../../static/graph/scene.js && node -e \"require('node:fs').copyFileSync('viewer.css','../../static/graph/explorer.css')\""
+  },
+  "dependencies": {
+    "three": "0.184.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

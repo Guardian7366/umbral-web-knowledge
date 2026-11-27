@@ -1,0 +1,4 @@
+-r requirements.txt
+# Optional tooling for classification evidence and the original graph drawing.
+matplotlib==3.11.2
+networkx==3.6.1

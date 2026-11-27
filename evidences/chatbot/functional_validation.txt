@@ -1,0 +1,226 @@
+UMBRAL WEB - Document Chatbot
+F03 - Functional Validation
+Chatbot Version 2
+=================================================================
+
+CASE: C01
+QUESTION: How can we organize a session to generate design ideas?
+ANSWERED: True
+
+ANSWER:
+According to Brief Idea Generation Session (UW04):
+The ideation session begins with a specific design problem. The person in charge must express it in one sentence and share the project constraints. The group then reviews two references to help open the discussion. During the first ten minutes, each participant independently sketches three alternatives. At this stage, proposals are not discarded because they seem difficult to develop. Each person then explains the intention behind their sketches, and the rest of the team identifies ideas that could be combined or explored. The session ends by choosing two directions for a quick prototype.
+
+SOURCES:
+UW04 - Brief Idea Generation Session
+Category: creative_methods
+Document similarity: 0.200033
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C02
+QUESTION: What should we review to prevent animations from making navigation difficult?
+ANSWERED: True
+
+ANSWER:
+According to Project Closeout for the Estudio Norte Portfolio (UW08):
+When reviewing the prototype, the team found that some effects delayed access to the projects. The transitions were shortened, and a direct way to open each case study was added. Animations were reserved for state changes and specific moments in navigation. In a later review, the feedback highlighted that it was easier to browse the portfolio without losing its visual character. The lesson from the closeout was that an eye-catching presentation needs a clear navigation path. The review feedback, screenshots of both versions, and motion adjustments were archived. These reference materials must be consulted whenever a new proposal uses animation as a central part of its identity.
+
+SOURCES:
+UW08 - Project Closeout for the Estudio Norte Portfolio
+Category: project_lessons
+Document similarity: 0.125356
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C03
+QUESTION: What lessons were learned from the Aula Clara course catalog?
+ANSWERED: True
+
+ANSWER:
+According to Project Closeout for the Aula Clara Course Catalog (UW07):
+The Aula Clara project involved designing the interface for a course catalog. The first proposal reused the company’s usual layout: a large image at the top and a list of identical cards. The internal review revealed that it was difficult to distinguish course levels and delivery modes. The team adjusted the cards to show the information needed to compare courses first and separated the content according to users’ information needs. During the prototype review, participants were able to explain the differences between the options more clearly. The observation was recorded qualitatively, without a formal measurement of completion times. The lesson from the closeout was to review the content before choosing a template.
+
+SOURCES:
+UW07 - Project Closeout for the Aula Clara Course Catalog
+Category: project_lessons
+Document similarity: 0.232856
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C04
+QUESTION: How should the team test a visual proposal before development?
+ANSWERED: True
+
+ANSWER:
+According to Short Test of a Visual Proposal (UW05):
+Before developing a complete proposal, the team must turn its main idea into a small test. The first task is to write down what needs to be checked. For example: whether a different layout makes information about a service easier to find. A single-screen prototype is prepared with the content needed to complete the task. It is then shown to people who were not involved in the design; they are given a specific action to carry out, and their behavior is recorded. The observation must focus on whether they understand the proposal, not just whether they like its appearance. At the end, the team compares the observations with the initial question and decides whether to continue, adjust, or discard the direction.
+
+SOURCES:
+UW05 - Short Test of a Visual Proposal
+Category: creative_methods
+Document similarity: 0.080935
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C05
+QUESTION: What changes were made to the Estudio Norte portfolio?
+ANSWERED: True
+
+ANSWER:
+According to Project Closeout for the Estudio Norte Portfolio (UW08):
+The Estudio Norte project was a web portfolio for showcasing design work. The initial direction used lengthy transitions and automatic motion to give prominence to the images. When reviewing the prototype, the team found that some effects delayed access to the projects. The transitions were shortened, and a direct way to open each case study was added. Animations were reserved for state changes and specific moments in navigation. In a later review, the feedback highlighted that it was easier to browse the portfolio without losing its visual character. The lesson from the closeout was that an eye-catching presentation needs a clear navigation path.
+
+SOURCES:
+UW08 - Project Closeout for the Estudio Norte Portfolio
+Category: project_lessons
+Document similarity: 0.201243
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C06
+QUESTION: Why should a content-heavy page have a recognizable reading order?
+ANSWERED: True
+
+ANSWER:
+According to Visual Hierarchy for Content-Heavy Pages (UW01):
+A content-heavy page needs a recognizable reading order. The visual proposal must distinguish the main message, the supporting information, and the action expected of the visitor. If all elements have the same size or contrast, the composition loses its direction. An editorial composition is proposed as a reference for future interfaces: a dominant heading, short blocks of information, and open space between sections. Typography can add personality without requiring changes to the entire structure. Images should support the content, not displace the information the user needs. This reference is useful for service pages and catalogs.
+
+SOURCES:
+UW01 - Visual Hierarchy for Content-Heavy Pages
+Category: design_references
+Document similarity: 0.288850
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C07
+QUESTION: What is the capital of France?
+ANSWERED: False
+
+ANSWER:
+I could not find enough relevant information in the Umbral Web document collection to answer this question.
+
+SOURCES:
+None
+Extracted sentences: 0
+-----------------------------------------------------------------
+
+CASE: C08
+QUESTION: What is the price of Bitcoin?
+ANSWERED: False
+
+ANSWER:
+I could not find enough relevant information in the Umbral Web document collection to answer this question.
+
+SOURCES:
+None
+Extracted sentences: 0
+-----------------------------------------------------------------
+
+CASE: C09
+QUESTION: xyzunknownterm123
+ANSWERED: False
+
+ANSWER:
+I could not find enough relevant information in the Umbral Web document collection to answer this question.
+
+SOURCES:
+None
+Extracted sentences: 0
+-----------------------------------------------------------------
+
+CASE: C10
+QUESTION: [EMPTY INPUT]
+ANSWERED: False
+
+ANSWER:
+Please enter a question.
+
+SOURCES:
+None
+Extracted sentences: 0
+-----------------------------------------------------------------
+
+CASE: C11
+QUESTION: How can reusable components support a flexible visual identity?
+ANSWERED: True
+
+ANSWER:
+According to Modular Composition for a Flexible Identity (UW03):
+A visual identity can be maintained even when its pages do not repeat exactly the same layout. This reference proposes working with a modular grid and a limited set of resources: typography, color, images, and spacing rules. Modules can be combined to build a homepage, a service page, or a project showcase. Variety comes from the proportions and sequence of the blocks. A large module can highlight an idea; several small modules can make it possible to compare information. The team must maintain common rules so that the interface remains recognizable. Flexibility must not lead to arbitrary changes between sections.
+
+SOURCES:
+UW03 - Modular Composition for a Flexible Identity
+Category: design_references
+Document similarity: 0.110921
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C12
+QUESTION: How should the group review concepts before choosing a direction?
+ANSWERED: True
+
+ANSWER:
+According to Concept Review Before Choosing a Direction (UW06):
+The concept review takes place when there are at least two visual directions for the same problem. Each direction must be presented with the same content and a similar level of detail so that the comparison is useful. The moderator asks the team to assess three aspects: clarity for the user, alignment with the project identity, and how the proposal differs from the solutions the company tends to repeat. Each comment must identify a specific element of the proposal and explain its effect. Before voting, time is allowed to adjust or combine the directions. The group chooses a direction and documents the reasons, the questions that remain open, and the next testing step. If an idea is discarded, the reason is recorded.
+
+SOURCES:
+UW06 - Concept Review Before Choosing a Direction
+Category: creative_methods
+Document similarity: 0.103486
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C13
+QUESTION: What improvements were made to the Mesa Abierta digital menu?
+ANSWERED: True
+
+ANSWER:
+According to Project Closeout for the Mesa Abierta Digital Menu (UW09):
+The Mesa Abierta project involved designing a digital menu for a restaurant. The first proposal used large photographs and dish names that were not prominent enough. During the review on a phone, difficulties were found in comparing prices and identifying the menu sections. The adjusted version gave priority to the name, brief description, and price of each dish. The photographs were retained as supporting elements, and navigation between sections was simplified. The feedback received indicated that the information appeared more organized; no quantitative evaluation was conducted. The lesson was to check the proposal on the device on which it would be used before approving its appearance.
+
+SOURCES:
+UW09 - Project Closeout for the Mesa Abierta Digital Menu
+Category: project_lessons
+Document similarity: 0.231216
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C14
+QUESTION: Why should animations be tied to a specific function?
+ANSWERED: True
+
+ANSWER:
+According to Motion and Visual Feedback in an Interface (UW02):
+A brief transition between states, a confirmation when a form is submitted, or a response when a card is selected makes it possible to recognize that the action has been received. The proposed reference uses subtle animations tied to a specific function. Constant motion around text, effects that delay navigation, and abrupt changes that distract from the content should be avoided. The design must also provide a reduced-motion version. To explore this visual direction, it is useful to examine three moments: entering a section, receiving feedback from a button, and a component changing state. Motion will be retained when it clarifies the interaction. If it only adds decoration or makes reading difficult, it must be simplified.
+
+SOURCES:
+UW02 - Motion and Visual Feedback in an Interface
+Category: design_references
+Document similarity: 0.211246
+Extracted sentences: 7
+-----------------------------------------------------------------
+
+CASE: C15
+QUESTION: How can I repair a car engine?
+ANSWERED: False
+
+ANSWER:
+I could not find enough relevant information in the Umbral Web document collection to answer this question.
+
+SOURCES:
+None
+Extracted sentences: 0
+-----------------------------------------------------------------
+
+CASE: C16
+QUESTION: What is the weather forecast for Tokyo?
+ANSWERED: False
+
+ANSWER:
+I could not find enough relevant information in the Umbral Web document collection to answer this question.
+
+SOURCES:
+None
+Extracted sentences: 0
+-----------------------------------------------------------------

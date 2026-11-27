@@ -1,0 +1,18 @@
+[theme]
+base = "light"
+primaryColor = "#1D4BDB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F7FB"
+textColor = "#10273F"
+font = "Source Sans 3"
+headingFont = "Archivo"
+borderColor = "#637C92"
+
+[client]
+toolbarMode = "minimal"
+
+[server]
+enableStaticServing = true
+
+[browser]
+gatherUsageStats = false
