@@ -134,6 +134,7 @@ function openReader(root, state, data, trigger, sourceId) {
 function backFromReader(root, state, data) {
   const selection = state.reader;
   if (!selection) return;
+  state.umbrely?.interrupt();
   if (selection.key && selection.mode === "original") {
     selection.mode = "source";
     selection.returnFromOriginal = true;
@@ -194,6 +195,63 @@ function readyFocus(root, state, data, previousPage, action, oldScroll) {
   }
 }
 
+function updateGraph(root, state, data, transport) {
+  const host = root.querySelector("[data-graph-host]");
+  if (!host || !data.graph) return;
+  const graphBridge = {
+    parentElement: host,
+    data: data.graph,
+    setTriggerValue: (kind, payload) => {
+      if (kind === "original") transport("graph_original", { ...payload, revision: data.revision });
+    },
+  };
+  state.graphBridge = graphBridge;
+  if (state.graphRender) {
+    state.graphRender(graphBridge);
+    return;
+  }
+  if (state.graphHost === host) return;
+  state.graphHost = host;
+  const location = new URL("./app/static/graph/", document.baseURI);
+  const renderExplorer = async () => {
+    const style = document.createElement("link");
+    style.rel = "stylesheet";
+    style.href = new URL("explorer.css", location).href;
+    const styled = new Promise((resolve, reject) => {
+      style.onload = resolve;
+      style.onerror = reject;
+    });
+    host.prepend(style);
+    try {
+      const asset = new URL("explorer.js", location);
+      if (state.graphRetries) asset.searchParams.set("retry", String(state.graphRetries));
+      const [module] = await Promise.all([import(asset.href), styled]);
+      if (!host.isConnected || state.graphHost !== host) return;
+      const refocus = root.getRootNode().activeElement === host.querySelector("#page-title");
+      state.graphStop = module.default(state.graphBridge);
+      state.graphRender = module.default;
+      if (refocus) focus(host.querySelector("#page-title"));
+    } catch {
+      if (!host.isConnected || state.graphHost !== host) return;
+      style.remove();
+      const wrapper = host.querySelector(".graph-lab");
+      wrapper.innerHTML = '<h1 id="page-title" tabindex="-1">Knowledge Graph</h1>'
+        + '<p role="alert">The graph interface could not load.</p><button type="button">Retry</button>';
+      wrapper.querySelector("button").onclick = () => {
+        state.graphRetries = (state.graphRetries || 0) + 1;
+        renderExplorer();
+      };
+    }
+  };
+  void renderExplorer();
+}
+
+function stopGraph(state) {
+  state.graphStop?.();
+  state.graphStop = state.graphRender = state.graphHost = state.graphBridge = null;
+  state.graphRetries = 0;
+}
+
 export default function render({ parentElement, data, setTriggerValue }) {
   const root = parentElement.querySelector("#umbral-root");
   if (!root || !data) return;
@@ -203,20 +261,31 @@ export default function render({ parentElement, data, setTriggerValue }) {
     instances.set(root, state);
   }
   if (state.revision === data.revision && state.markup === data.markup) {
+    updateGraph(root, state, data, setTriggerValue);
+    updateUmbrely(root, state, data);
     return () => unmount(root, state);
   }
 
   const previousPage = state.page;
-  const lastAction = state.pending;
-  const accepted = lastAction && state.revision !== data.revision;
+  const operation = data.mascot?.operation;
+  const processing = operation?.phase === "processing";
+  const carried = operation && state.answerAction?.id === operation.id ? state.answerAction.action : null;
+  const lastAction = state.pending ?? carried;
+  const actionPage = carried ? state.answerAction.page : previousPage;
+  if (processing && lastAction && ["submit", "retry"].includes(lastAction.kind)) {
+    state.answerAction = {id: operation.id, action: lastAction, page: actionPage};
+  } else {
+    state.answerAction = null;
+  }
+  const accepted = lastAction && !processing && (state.revision !== data.revision || carried);
   const oldScroll = root.querySelector(".turns")?.scrollTop || 0;
   const oldField = root.querySelector("#question");
   if (oldField) state.drafts[previousPage] = oldField.value;
   state.scroll[previousPage] = oldScroll;
   if (previousPage !== data.page || lastAction?.kind === "clear") state.reader = null;
   if (accepted && lastAction.kind === "submit") {
-    const saved = state.drafts[previousPage];
-    if (saved?.trim() === lastAction.text.trim()) state.drafts[previousPage] = "";
+    const saved = state.drafts[actionPage];
+    if (saved?.trim() === lastAction.text.trim()) state.drafts[actionPage] = "";
   } else if (accepted && lastAction.kind === "retry") {
     const stillFailed = data.markup.includes(`id="turn-error-${lastAction.turn}"`);
     if (!stillFailed && state.drafts.Assistant?.trim() === lastAction.text) state.drafts.Assistant = "";
@@ -240,6 +309,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
   const archiveSnapshot = state.archive?.snapshot();
   state.archive?.stop();
   state.archive = null;
+  stopGraph(state);
   root.innerHTML = data.markup;
 
   const field = root.querySelector("#question");
@@ -253,7 +323,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
   const turns = root.querySelector(".turns");
 
   function submitAction(action, onTimeout) {
-    if (state.pending) return;
+    if (state.pending || (processing && ["submit", "retry"].includes(action.kind))) return;
     if (action.kind === "navigate" && state.tools) action.toolDraft = state.tools.draft();
     if (action.kind === "navigate" && state.archive) action.query = state.archive.snapshot().text;
     if (action.kind === "navigate" && state.classification) {
@@ -265,6 +335,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
     state.pending = action;
     if (field) fitComposer(field, send, true);
     const expectingAnswer = action.kind === "retry" || (action.kind === "submit" && action.text.trim());
+    if (expectingAnswer || action.kind === "navigate" || action.kind === "clear") state.umbrely?.interrupt(false);
     let waiting;
     if (expectingAnswer) {
       waiting = document.createElement("p");
@@ -285,6 +356,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
         announcements.textContent = "The action could not be completed. Try again.";
       }
       if (field) fitComposer(field, send, false);
+      state.umbrely?.settle();
       onTimeout?.();
     }, action.kind === "tool_submit" ? 120000 : 15000);
     setTriggerValue("action", { ...action, revision: data.revision });
@@ -292,7 +364,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
 
   if (field) {
     field.value = state.drafts[data.page] || "";
-    fitComposer(field, send, false);
+    fitComposer(field, send, processing);
     field.form.onsubmit = event => {
       event.preventDefault();
       if (data.page === "Overview" || field.value.trim()) submitAction({ kind: "submit", text: field.value });
@@ -301,7 +373,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
       field.removeAttribute("aria-invalid");
       field.removeAttribute("aria-describedby");
       if (transportError) transportError.hidden = true;
-      fitComposer(field, send, Boolean(state.pending));
+      fitComposer(field, send, Boolean(state.pending) || processing);
     };
     let composing = false;
     field.oncompositionstart = () => { composing = true; };
@@ -356,6 +428,7 @@ export default function render({ parentElement, data, setTriggerValue }) {
 
     if ("menu" in command) openMenu();
     else if ("closeMenu" in command) closeMenu(true);
+    else if ("retryGraph" in command) setTriggerValue("graph_retry", true);
     else if ("route" in command) {
       if (drawer.open) closeMenu(false);
       if (command.route === data.page) focus(root.querySelector("#archive-reader-title") || root.querySelector("#page-title"));
@@ -381,7 +454,12 @@ export default function render({ parentElement, data, setTriggerValue }) {
     }
     else if ("source" in command) {
       if (state.reader?.trigger === target.id) backFromReader(root, state, data);
-      else openReader(root, state, data, target, command.source);
+      else {
+        openReader(root, state, data, target, command.source);
+        if (!processing && !state.pending && data.evidence[state.reader.key] && data.documents[command.source]?.bytes) {
+          state.umbrely?.react("sourceDiscovered");
+        }
+      }
     } else if ("original" in command && state.reader) {
       state.reader.panelScroll = root.querySelector(".reader").scrollTop;
       state.reader.mode = "original";
@@ -407,9 +485,11 @@ export default function render({ parentElement, data, setTriggerValue }) {
     }
   };
 
+  updateGraph(root, state, data, setTriggerValue);
   showFeature(root, state, state.feature);
   renderReader(root, state, data, false);
-  readyFocus(root, state, data, previousPage, accepted ? lastAction : null, oldScroll);
+  updateUmbrely(root, state, data);
+  readyFocus(root, state, data, accepted ? actionPage : previousPage, accepted ? lastAction : null, oldScroll);
   state.archive = maintainArchive(root, state, data, submitAction, accepted ? lastAction : null, archiveSnapshot);
   const queued = state.archiveQueued;
   state.archiveQueued = null;
@@ -426,6 +506,8 @@ export default function render({ parentElement, data, setTriggerValue }) {
 }
 
 function unmount(root, state) {
+  state.umbrely?.stop();
+  stopGraph(state);
   state.tools?.stop();
   state.classification?.stop();
   state.archive?.stop();

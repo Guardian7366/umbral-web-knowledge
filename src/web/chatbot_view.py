@@ -17,11 +17,12 @@ EXAMPLE_QUESTIONS = (
 )
 
 
-def handle_action(state, action, chatbot):
+def handle_action(state, action, chatbot, *, answer_question=None):
     """Consume a rendered revision once, even if its event is replayed."""
     if not isinstance(action, dict) or action.get("revision") != state[REVISION_KEY]:
         return
 
+    answer_question = answer_question or _answer
     kind = action.get("kind")
     page = state["navigation"]
     history = state[HISTORY_KEY]
@@ -42,7 +43,7 @@ def handle_action(state, action, chatbot):
             user, answer = history[turn * 2:turn * 2 + 2]
             if answer["status"] == "error":
                 state[REVISION_KEY] = uuid4().hex
-                _answer(chatbot, user["content"], answer)
+                answer_question(chatbot, user["content"], answer)
         return
 
     if kind != "submit" or page not in ("Overview", "Assistant"):
@@ -59,7 +60,7 @@ def handle_action(state, action, chatbot):
     if question:
         answer = {"role": "assistant", "status": "processing"}
         history.extend(({"role": "user", "content": question}, answer))
-        _answer(chatbot, question, answer)
+        answer_question(chatbot, question, answer)
 
 
 def _answer(chatbot, question, answer):

@@ -1,5 +1,6 @@
 """UMBRAL WEB entry point and shared knowledge engines."""
 
+import os
 from pathlib import Path
 
 import streamlit as st
@@ -32,9 +33,12 @@ def render_knowledge_graph():
 
 def main():
     retrieval, recommender, chatbot = initialize_engines()
-    page = render_prototype(retrieval, recommender, chatbot)
+    graph_candidate = os.environ.get("UMBRAL_GRAPH_CANDIDATE") == "1"
+    graph_release = os.environ.get("UMBRAL_GRAPH_RELEASE", "0" if graph_candidate else "1") == "1"
+    page = render_prototype(retrieval, recommender, chatbot,
+                            graph_candidate=graph_candidate, graph_release=graph_release)
 
-    if page == "Knowledge Graph":
+    if page == "Knowledge Graph" and not (graph_candidate or graph_release):
         with st.container(key="umbral-native"):
             render_knowledge_graph()
 

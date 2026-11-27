@@ -1,42 +1,64 @@
-# Umbral Web
+# UMBRAL WEB
 
-An academic knowledge management prototype for a fictional software company specializing in web design.
+An academic knowledge management prototype for a fictional web design organization. The Streamlit app provides Overview, Documents, Classification, Search, Recommendations, Assistant and a Knowledge Graph entry.
 
-The system aims to retrieve references, creative methods, and lessons learned that help the team move beyond repeated solutions.
+Documents reads and downloads the nine original texts. Classification offers Multinomial Naive Bayes and Logistic Regression. Search ranks lexical matches. Recommendations supports TF-IDF and BGE from a document or explicit query. Assistant answers in English using passages from the collection.
 
-## Project status
+This release includes the approved Knowledge Graph in 3D and text views and the four authorized Umbrely runtime files. Both features are enabled by default. See the [resource and third-party notices](docs/THIRD_PARTY_NOTICES.md).
 
-The current prototype includes:
+## Requirements and startup
 
-- A repository of nine fictional internal documents.
-- Automated document classification using TF-IDF.
-- Multinomial Naive Bayes and Logistic Regression models.
-- Basic document retrieval using cosine similarity.
-- A conceptual knowledge graph and knowledge lifecycle.
-- Historical classification and search evidence.
-- A shared document retrieval engine.
-- Automated retrieval regression tests.
-- Document recommendations with explanations.
-- An extractive document-based chatbot.
+Use CPython 3.11 (validated on Windows with 3.11.9). Run from the supplied candidate root or the corresponding authorized revision.
 
-The classification, retrieval, recommendation, and chatbot components are implemented and validated. Interactive knowledge graph integration, web interface development, and public deployment remain pending.
+Windows PowerShell:
 
-## Project structure
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1
+```
 
-- `data/documents/`: internal documents in UTF-8.
-- `data/catalog.json`: document metadata and categories.
-- `src/classifier.py`: automated document classification.
-- `src/retrieval.py`: shared document retrieval engine.
-- `src/interactive.py`: command-line document retrieval.
-- `src/recommender.py`: document recommendation engine.
-- `src/recommendation_cli.py`: recommendation interface.
-- `src/chatbot.py`: document-based chatbot engine.
-- `src/chatbot_cli.py`: chatbot conversation interface.
-- `src/README.md`: technical documentation.
-- `tests/`: automated regression tests.
-- `docs/`: knowledge lifecycle and ontology diagrams.
-- `evidences/`: historical execution evidence.
-- `requirements.txt`: direct Python dependencies.
+Linux/macOS shell:
+
+```bash
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m streamlit run app.py --server.address 127.0.0.1
+```
+
+Open <http://127.0.0.1:8501>. Use `--server.port` if 8501 is occupied. The historical `/preview/` address is the same app with the Streamlit option `--server.baseUrlPath preview`. Static resources are enabled by `.streamlit/config.toml`. The running app needs no auxiliary service or frontend build.
+
+### First semantic recommendation
+
+Select **Related ideas** in Recommendations to initialize `BAAI/bge-small-en-v1.5`. FastEmbed obtains the quantized ONNX model from Hugging Face over HTTPS. Use a writable cache directory and set `FASTEMBED_CACHE_PATH` to choose its location. Keep the cache outside the repository and the static directory. A new process can reuse the files if the cache persists. `HF_HUB_OFFLINE=1` requires a usable copy. On a loading error the interface allows retry or an explicit switch to **Shared words**.
+
+### Release and local review assets
+
+- The release reads `src/web/graph_release.json` and verifies its approved hash. Set `UMBRAL_GRAPH_RELEASE=0` to disable the release graph. To review the historical private snapshot, place it at `src/web/graph_snapshot.json` and set `UMBRAL_GRAPH_CANDIDATE=1`. Explicitly setting `UMBRAL_GRAPH_RELEASE=1` takes precedence. To build the existing graph frontend, run `npm ci` then `npm run build` in `frontend/knowledge_graph`. Its lock file pins Three.js 0.184.0 and esbuild 0.25.12. The already compiled resources under `static/graph/` serve the application at runtime.
+- The four approved files `umbrely-manifest.json`, `umbrely-neutral.png`, `umbrely-atlas.png` and `umbrely-expressions.png` are shipped in `static/umbrely-local/`. Idle and its pause control are enabled with the authorized artwork. Set `UMBRAL_UMBRELY_LOCAL=0` to disable the character for local diagnostics.
+
+If resources fail to load, launch from the project root and check `.streamlit/config.toml`. If BGE cannot start, check the writable cache and HTTPS access. Use `python -m pip check` to review the Python environment.
+
+## Project structure and tests
+
+- `app.py` is the Streamlit entry point.
+- `src/` contains the document engines and optional CLI tools.
+- `src/web/` contains the interface adapters and component sources.
+- `data/` contains the catalog and UTF-8 originals.
+- `static/` holds fonts, marks and compiled browser assets.
+- `frontend/knowledge_graph/` contains the source and build configuration.
+- `tests/` uses standard-library unittest and runtime dependencies.
+- `requirements-dev.txt` adds Matplotlib for classifier evidence charts and NetworkX for the contributor's standalone graph drawing. Install it before generating those charts with `src/classifier.py --save-evidence`.
+- `docs/` and [src/README.md](src/README.md) provide academic and historical technical documentation. Historical captures and lab files belong to the development archive.
+
+With the environment active:
+
+```bash
+python -m unittest discover -s tests -v
+python -m pip check
+```
+
+The regression suite checks the approved graph, the runtime artwork and the handling of private preview data. Historical counts below refer to their original milestones.
 
 ## Document categories
 
@@ -58,39 +80,7 @@ The classification, retrieval, recommendation, and chatbot components are implem
 | UW08 | Project Closeout for the Estudio Norte Portfolio | project_lessons |
 | UW09 | Project Closeout for the Mesa Abierta Digital Menu | project_lessons |
 
-## Requirements
-
-- Python 3.11 (validated locally with Python 3.11.9).
-- Dependencies listed in `requirements.txt`.
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Guardian7366/umbral-web-knowledge.git
-cd umbral-web-knowledge
-```
-
-Create a virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-On Windows PowerShell:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-On Linux or macOS:
-
-```bash
-.venv/bin/python -m pip install -r requirements.txt
-```
-
-## Running the prototype
+## Optional command-line tools
 
 The following commands assume that the virtual environment is active.
 
@@ -142,32 +132,6 @@ Naive Bayes is the default classification model.
 The catalog defines six training documents and three test documents. All nine documents are available for retrieval.
 
 Category labels and dataset split metadata must not be included as classification input.
-
-## Automated tests
-
-Run the regression test suite from the repository root:
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-The complete regression suite contains 49 automated tests covering retrieval, recommendations, and chatbot behavior.
-
-All 49 tests passed during F03 validation.
-
-## Limitations
-
-- The document collection contains only nine texts.
-- Classification results do not establish generalization to larger or unseen document collections.
-- Document retrieval is based on TF-IDF and cosine similarity rather than contextual embeddings.
-- The current document collection is written in English.
-- The existing prototype uses a command-line interface.
-- Recommendations and chatbot interaction are currently available through command-line interfaces.
-- Interactive graph visualization, web integration, and public deployment remain pending.
-
-## Technical documentation
-
-See [src/README.md](src/README.md) for details about classification, retrieval, automated tests, and historical evidence.
 
 ## Academic context
 

@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Retain only the four Umbrely runtime files authorized for this release.
+/static/umbrely-local/*
+!/static/umbrely-local/umbrely-atlas.png
+!/static/umbrely-local/umbrely-expressions.png
+!/static/umbrely-local/umbrely-manifest.json
+!/static/umbrely-local/umbrely-neutral.png
+
+# Frontend dependencies and provisional graph data for local review.
+node_modules/
+/src/web/graph_snapshot.json

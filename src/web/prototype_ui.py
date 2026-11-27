@@ -7,11 +7,13 @@ from uuid import uuid4
 
 import streamlit as st
 
-from src.web.chatbot_view import EXAMPLE_QUESTIONS, HISTORY_KEY, PAGES, REVISION_KEY, handle_action
+from src.web.chatbot_view import EXAMPLE_QUESTIONS, HISTORY_KEY, PAGES, REVISION_KEY, _answer, handle_action
 from src.web.classification_view import handle_classification_action, render_classification
 from src.web.document_views import category_label
+from src.web.graph_view import load_graph, original_response
 from src.web.recommendation_view import handle_recommendations_action, render_recommendations
 from src.web.search_view import handle_search_action, render_search
+from src.web.umbrely_view import JOB, local_manifest, operation_event, schedule_answer
 from src.web.documents_archive import (
     document_payload, handle_library_action, remember_library_query, render_archive,
 )
@@ -52,8 +54,8 @@ def _read(name):
 _COMPONENT = st.components.v2.component(
     "umbral_prototype",
     html='<div id="umbral-root"></div>',
-    css=_color_css() + _read("prototype.css") + "\n" + _read("archive.css") + "\n" + _read("classification.css") + "\n" + _read("tools.css") + "\n" + _read("recommendations.css"),
-    js=_read("tools.js") + "\n" + _read("classification.js") + "\n" + _read("archive.js") + "\n" + _read("prototype.js"),
+    css=_color_css() + _read("prototype.css") + "\n" + _read("archive.css") + "\n" + _read("classification.css") + "\n" + _read("tools.css") + "\n" + _read("recommendations.css") + "\n" + _read("umbrely.css"),
+    js=_read("tools.js") + "\n" + _read("classification.js") + "\n" + _read("archive.js") + "\n" + _read("umbrely.js") + "\n" + _read("prototype.js"),
 )
 
 
@@ -66,11 +68,13 @@ def _route(page, label=None):
             f'{escape(label or page)}{symbol("next")}</button>')
 
 
-def _shell(page, has_history):
+def _shell(page, has_history, graph_candidate=False, *, graph_release=False):
     links = []
     for name in PAGES:
         active = ' aria-current="page"' if name == page else ""
-        note = "<small>Integration pending</small>" if name == "Knowledge Graph" else ""
+        note = ""
+        if name == "Knowledge Graph" and not graph_release:
+            note = "<small>Local preview</small>" if graph_candidate else "<small>Integration pending</small>"
         links.append(
             f'<button type="button" class="route" data-route="{name}"{active}>'
             f'{symbol(name)}<span>{name}{note}</span></button>'
@@ -198,7 +202,8 @@ def _overview(documents, feature):
     """
 
 
-def _assistant(history):
+def _assistant(history, *, mascot=False):
+    sprite = '<div class="umbrely-slot" data-umbrely-slot aria-hidden="true"></div>' if mascot else ""
     if not history:
         suggestions = "".join(
             f'<button type="button" class="suggestion" data-suggest="{index}">{escape(question)}{symbol("next")}</button>'
@@ -228,6 +233,7 @@ def _assistant(history):
     return f"""
         <div class="assistant-workspace {'has-turns' if history else 'welcome'}">
             <div class="assistant-main">{conversation}{_composer()}</div>
+            {sprite}
             {_reader()}
         </div>
     """
@@ -280,9 +286,11 @@ def _assistant_sources(documents, history):
     return {doc.doc_id: document_payload(doc) for doc in documents if doc.doc_id in available_ids}, evidence
 
 
-def render_prototype(retrieval, recommender, chatbot):
+def render_prototype(retrieval, recommender, chatbot, *, graph_candidate=False, graph_release=False):
     state = st.session_state
-    state.setdefault("navigation", "Overview")
+    graph_enabled = graph_candidate or graph_release
+    direct_graph = graph_enabled and st.query_params.get("page") == "graph"
+    state.setdefault("navigation", "Knowledge Graph" if direct_graph else "Overview")
     state.setdefault(REVISION_KEY, uuid4().hex)
     state.setdefault(HISTORY_KEY, [])
 
@@ -302,7 +310,21 @@ def render_prototype(retrieval, recommender, chatbot):
             return
         if not handle_library_action(state, action, retrieval.documents):
             remember_library_query(state, action, retrieval.documents)
-            handle_action(state, action, chatbot)
+            schedule = None
+            if (isinstance(action, dict) and action.get("kind") in ("submit", "retry")
+                    and state["navigation"] in ("Overview", "Assistant") and local_manifest()):
+                schedule = lambda _engine, question, answer: schedule_answer(state, question, answer)
+            handle_action(state, action, chatbot, answer_question=schedule)
+
+    def on_graph_original():
+        action = state[COMPONENT_KEY].graph_original
+        if (graph_enabled and state["navigation"] == "Knowledge Graph"
+                and isinstance(action, dict) and action.get("revision") == state[REVISION_KEY]):
+            state["graph_original_response"] = original_response(
+                action, retrieval.documents, _badge, symbol, release=graph_release)
+
+    def on_graph_retry():
+        load_graph.cache_clear()
 
     page = state["navigation"]
     history = state[HISTORY_KEY]
@@ -311,13 +333,18 @@ def render_prototype(retrieval, recommender, chatbot):
     archive = None
     classification = None
     tools = None
+    explorer = None
+    mascot = None
     if page == "Overview":
         feature = next(doc for doc in retrieval.documents if doc.doc_id == "UW04")
         documents[feature.doc_id] = document_payload(feature)
         content = _overview(retrieval.documents, documents[feature.doc_id])
     elif page == "Assistant":
         documents, evidence = _assistant_sources(retrieval.documents, history)
-        content = _assistant(history)
+        config = local_manifest()
+        if config:
+            mascot = {"config": config, "operation": operation_event(state)}
+        content = _assistant(history, mascot=bool(mascot))
     elif page == "Documents":
         content, archive = render_archive(state, retrieval.documents, _badge, symbol)
     elif page == "Classification":
@@ -326,16 +353,40 @@ def render_prototype(retrieval, recommender, chatbot):
         content, tools = render_search(state, retrieval, _badge, symbol)
     elif page == "Recommendations":
         content, tools = render_recommendations(state, recommender, _badge, symbol)
+    elif page == "Knowledge Graph" and graph_enabled:
+        try:
+            explorer = {
+                "graph": load_graph(release=graph_release), "reader": state.get("graph_original_response"),
+                "initialMode": "text" if st.query_params.get("view") == "text" else "3d",
+                "symbols": {"Search": symbol("Search")},
+            }
+        except (OSError, ValueError, KeyError, TypeError):
+            content = (
+                '<h1 id="page-title" tabindex="-1">Knowledge Graph</h1>'
+                '<p role="alert">Graph data unavailable.</p>'
+                '<button type="button" data-retry-graph>Retry</button>'
+            )
+        else:
+            content = ('<div data-graph-host><div class="graph-lab">'
+                       '<h1 id="page-title" tabindex="-1">Knowledge Graph</h1>'
+                       '<p role="status">Loading graph…</p></div></div>')
     else:
         content = ""
     crumb = f'<p class="crumb">Knowledge Hub <span>/</span> <strong>{page}</strong></p>'
-    markup = (f'{_shell(page, bool(history))}<div class="page page-{page.lower().replace(" ", "-")}"'
+    shell = _shell(page, bool(history), graph_candidate, graph_release=graph_release)
+    markup = (f'{shell}<div class="page page-{page.lower().replace(" ", "-")}"'
               f' id="page-content"><div class="page-inner">{crumb}{content}</div></div><div class="announcements" role="status"></div>')
     st.html(ASSETS / "host.css")
     with st.container(key="umbral-frame"):
         _COMPONENT(
             key=COMPONENT_KEY, on_action_change=on_action,
+            on_graph_original_change=on_graph_original, on_graph_retry_change=on_graph_retry,
             data={"page": page, "markup": markup, "revision": state[REVISION_KEY], "documents": documents,
-                  "evidence": evidence, "archive": archive, "classification": classification, "tools": tools, "suggestions": EXAMPLE_QUESTIONS, "turns": len(history) // 2},
+                  "evidence": evidence, "archive": archive, "classification": classification, "tools": tools, "graph": explorer, "mascot": mascot, "suggestions": EXAMPLE_QUESTIONS, "turns": len(history) // 2},
         )
+    # Publish the accepted operation before calling the synchronous retriever.
+    job = state.pop(JOB, None)
+    if job:
+        _answer(chatbot, *job)
+        st.rerun()
     return page

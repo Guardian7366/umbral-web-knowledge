@@ -2,6 +2,7 @@
 
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from streamlit.testing.v1 import AppTest
 
@@ -90,10 +91,15 @@ class TestWebIntegration(unittest.TestCase):
                 data = prototype_data(self.app)
                 self.assertEqual(data["page"], page)
                 self.assertIn(f'data-route="{page}" aria-current="page"', data["markup"])
-                if page in ("Overview", "Assistant", "Documents", "Classification", "Search", "Recommendations"):
-                    self.assertIn('<h1 id="page-title"', data["markup"])
-                else:
-                    self.assertTrue(self.app.title)
+                self.assertIn('<h1 id="page-title"', data["markup"])
+                if page == "Knowledge Graph":
+                    self.assertEqual(data["graph"]["graph"]["counts"], {"nodes": 27, "edges": 15})
+
+    def test_disabled_graph_preserves_native_placeholder(self):
+        with patch.dict("os.environ", {"UMBRAL_GRAPH_RELEASE": "0", "UMBRAL_GRAPH_CANDIDATE": "0"}):
+            self.navigate("Knowledge Graph")
+            self.assertIsNone(prototype_data(self.app)["graph"])
+            self.assertEqual(self.app.title[0].value, "Knowledge graph")
 
     def test_overview_navigation_button(self):
         self.assertIn("Browse documents", prototype_data(self.app)["markup"])

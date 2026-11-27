@@ -1,0 +1,8 @@
+# Preserve the authorized CRLF JSON bytes and the prebuilt browser assets.
+/src/web/graph_release.json -text whitespace=cr-at-eol
+/static/umbrely-local/umbrely-manifest.json -text whitespace=cr-at-eol
+# Generated Three.js bundle contains embedded shader strings.
+/static/graph/scene.js -whitespace
+# Keep the approved CSS source and its shipped copy byte-identical.
+/frontend/knowledge_graph/viewer.css whitespace=-blank-at-eof
+/static/graph/explorer.css whitespace=-blank-at-eof

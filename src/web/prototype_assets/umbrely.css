@@ -1,0 +1,34 @@
+/* One transparent, integer-scaled sprite in the reserved Assistant space. */
+.umbrely-slot {
+  position: absolute;
+  inset: 0 4px auto auto;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  z-index: 1;
+}
+.assistant-workspace.welcome > .umbrely-slot { inset-block-start: 18px; }
+.assistant-workspace:has(> .umbrely-slot:not([hidden])) .conversation-heading { padding-inline-end: 72px; }
+.umbrely-sprite { width: 100%; height: 100%; background-repeat: no-repeat; image-rendering: pixelated; }
+@media (min-width: 1260px) {
+  .assistant-workspace.welcome > .umbrely-slot { width: 128px; height: 128px; inset: 20px 20px auto auto; }
+}
+@media (max-width: 1259px) {
+  .assistant-workspace:has(.reader:not([hidden])) > .umbrely-slot { inset: 6px 8px auto auto; }
+  .assistant-workspace:has(> .umbrely-slot:not([hidden])) .reader:not(.original-mode) .reader-top { padding-inline-end: 72px; }
+  .assistant-workspace:has(.original-mode:not([hidden])) > .umbrely-slot { display: none; }
+}
+@media (max-width: 600px) {
+  .assistant-workspace.welcome > .umbrely-slot { inset: 0 0 auto auto; }
+}
+
+
+.umbrely-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 12px;
+}
+.umbrely-motion { min-block-size: 44px; }
+.umbrely-motion[hidden] { display: none; }
