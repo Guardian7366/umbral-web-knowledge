@@ -16,5 +16,5 @@ This release uses the following dependencies and resources. Project distribution
 ## Project resources
 
 - **Knowledge Graph.** Original contribution and authorship are recorded in commit [28eee54](https://github.com/Guardian7366/umbral-web-knowledge/commit/28eee545412951218dd8c7de4392494fcacb0d09). The final application uses the export approved in P08.2.1, with 27 nodes, 15 directed relations and the original keys.
-- **Umbrely.** Artwork supplied for the UMBRAL WEB project. The P08.2.1 confirmation covers use, modification and public distribution of the three approved PNGs and their runtime manifest. The exact individual credit line is pending the rights holder's wording.
+- **Umbrely.** Artwork supplied for the UMBRAL WEB project. The P08.2.1 confirmation covers use, modification and public distribution of the three approved PNGs and their runtime manifest. Credit supplied by the project: “Creados de Umbrely: Adrian Garcia Cuellar”.
 - **UMBRAL WEB corpus, brand and project code.** Distribution was authorized for this project version in P08.2.1. Authorization for subsequent versions is handled separately.
